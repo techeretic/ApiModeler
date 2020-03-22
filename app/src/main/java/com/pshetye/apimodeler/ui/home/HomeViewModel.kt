@@ -3,11 +3,12 @@ package com.pshetye.apimodeler.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.pshetye.apimodeler.R
+import com.pshetye.apimodeler.ui.home.models.SupportedModule
 
 class HomeViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    val supportedModules: LiveData<List<SupportedModule>> = MutableLiveData<List<SupportedModule>>()
+        .apply {
+            value = listOf(SupportedModule("USGS Earthquakes", R.id.usgsEarthquakes))
+        }
 }

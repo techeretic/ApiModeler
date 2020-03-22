@@ -1,5 +1,6 @@
 package com.pshetye.apimodeler.di.components
 
+import com.pshetye.apimodeler.MainActivity
 import com.pshetye.apimodeler.di.modules.DeserializationModule
 import com.pshetye.apimodeler.di.modules.NetworkModule
 import dagger.Component
@@ -13,13 +14,17 @@ import javax.inject.Singleton
         NetworkModule::class
     ]
 )]
-interface ApplicationComponent {
+interface ActivityComponent {
     @Component.Factory
     interface Factory {
-        fun create(): ApplicationComponent
+        fun create(): ActivityComponent
     }
 
     fun getBaseOkHttpClientBuilder(): OkHttpClient.Builder
 
     fun getBaseRetrofitBuilder(): Retrofit.Builder
+
+    fun getFragmentComponentFactory(): FragmentComponent.Factory
+
+    fun inject(mainActivity: MainActivity)
 }

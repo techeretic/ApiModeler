@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Api Modeler</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">@string/app_name</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_usgs">USGS EarthQuakes</string>
+
+    <string-array name="supported_modules">
+        <item>@string/title_usgs</item>
+    </string-array>
 </resources>
