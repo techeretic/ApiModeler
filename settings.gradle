@@ -1,0 +1,3 @@
+include ':usgs'
+include ':app'
+rootProject.name = "Api Modeler"
