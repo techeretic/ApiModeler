@@ -1,7 +1,9 @@
 package com.pshetye.usgs.ui.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.pshetye.usgs.models.Feature
 import com.pshetye.usgs.repository.network.UsgsService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -11,12 +13,16 @@ import javax.inject.Inject
 class UsgsEarthquakesViewModel @Inject constructor(
     private val usgsService: UsgsService
 ) : ViewModel() {
+
+    val earthquakes: MutableLiveData<List<Feature>> = MutableLiveData()
+
     fun fetchEarthQuakes(): Disposable {
         return usgsService.getEarthquakes(ALL_EQ_IN_LAST_HOUR)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Log.d(UsgsEarthquakesViewModel::class.simpleName, "${it.features?.size}")
+                earthquakes.postValue(it.features)
             }, { error ->
                 Log.e(UsgsEarthquakesViewModel::class.simpleName, "Error", error)
             })
