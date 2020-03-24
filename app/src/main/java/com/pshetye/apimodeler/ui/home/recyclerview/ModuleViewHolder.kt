@@ -2,6 +2,7 @@ package com.pshetye.apimodeler.ui.home.recyclerview
 
 import android.view.View
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.pshetye.apimodeler.R
@@ -12,8 +13,8 @@ class ModuleViewHolder(
 ) : RecyclerView.ViewHolder(view) {
     fun bind(supportedModule: SupportedModule) {
         view.findViewById<TextView>(R.id.module_name).text = supportedModule.moduleName
-        view.setOnClickListener {
-            it.findNavController().navigate(supportedModule.navigationRes)
-        }
+        view.setOnClickListener(
+            Navigation.createNavigateOnClickListener(supportedModule.navigationRes)
+        )
     }
 }
