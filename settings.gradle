@@ -1,3 +1,4 @@
+include ':covid19'
 include ':usgs'
 include ':app'
 rootProject.name = "Api Modeler"

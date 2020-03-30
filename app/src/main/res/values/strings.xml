@@ -8,4 +8,5 @@
     <string-array name="supported_modules">
         <item>@string/title_usgs</item>
     </string-array>
+    <string name="title_covid19">Covid 19</string>
 </resources>

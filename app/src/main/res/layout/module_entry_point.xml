@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/item_module_padding"
+        android:layout_marginBottom="8dp"
         android:textStyle="italic|bold"
         android:textSize="@dimen/item_module_text_size"
         android:background="@android:color/darker_gray"
