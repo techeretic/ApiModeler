@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="item_country_padding">4dp</dimen>
     <dimen name="item_country_text_size">16sp</dimen>
+    <dimen name="item_cases_padding">2sp</dimen>
     <dimen name="item_cases_text_size">16sp</dimen>
 </resources>

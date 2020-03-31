@@ -12,37 +12,37 @@
         android:id="@+id/country_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/item_module_padding"
+        android:padding="@dimen/item_country_padding"
         android:textStyle="italic|bold"
         android:textSize="@dimen/item_module_text_size"
         android:autoSizeTextType="uniform"
         android:background="@android:color/darker_gray"
+        android:layout_margin="4dp"
         tools:text="Country Name" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/cases"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:layout_margin="4dp"
+        android:textStyle="italic|bold"
+        android:padding="@dimen/item_cases_padding"
+        android:background="@android:color/darker_gray"
+        tools:text="@string/number_of_cases"/>
 
-        <TextView
-            android:id="@+id/cases"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:layout_margin="4dp"
-            android:background="@android:color/darker_gray"
-            tools:text="@string/number_of_cases"/>
+    <TextView
+        android:id="@+id/deaths"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:textStyle="italic|bold"
+        android:padding="@dimen/item_cases_padding"
+        android:background="@android:color/darker_gray"
+        tools:text="@string/number_of_deaths" />
 
-        <TextView
-            android:id="@+id/deaths"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:layout_margin="4dp"
-            android:background="@android:color/darker_gray"
-            tools:text="@string/number_of_deaths" />
-
-    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"/>
 
 </LinearLayout>

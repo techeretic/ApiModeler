@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
@@ -63,7 +64,7 @@ class CountriesFragment : Fragment() {
 
     private fun setupRecyclerView(rootView: View) {
         rootView.findViewById<RecyclerView>(R.id.countries).apply {
-            layoutManager = LinearLayoutManager(rootView.context)
+            layoutManager = GridLayoutManager(rootView.context, 2)
             adapter = countriesAdapter
         }
     }

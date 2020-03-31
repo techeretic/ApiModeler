@@ -6,11 +6,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pshetye.covid19.R
 import com.pshetye.covid19.models.Data
+import com.pshetye.covid19.ui.countries.viewmodels.CountryViewDataModel
 import javax.inject.Inject
 
 class CountriesAdapter @Inject constructor(
     countriesAsyncDiff: CountriesAsyncDiff
-) : ListAdapter<Data, RecyclerView.ViewHolder>(countriesAsyncDiff) {
+) : ListAdapter<CountryViewDataModel, RecyclerView.ViewHolder>(countriesAsyncDiff) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return CountryViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.country_item_view, parent, false)
