@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
 import com.pshetye.covid19.R
 import com.pshetye.covid19.di.components.Covid19Component
@@ -64,7 +65,7 @@ class CountriesFragment : Fragment() {
 
     private fun setupRecyclerView(rootView: View) {
         rootView.findViewById<RecyclerView>(R.id.countries).apply {
-            layoutManager = GridLayoutManager(rootView.context, 2)
+            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             adapter = countriesAdapter
         }
     }

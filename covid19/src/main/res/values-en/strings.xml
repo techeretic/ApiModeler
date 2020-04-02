@@ -3,4 +3,5 @@
     <string name="number_of_cases">%1s cases</string>
     <string name="number_of_deaths">%1s deaths</string>
     <string name="number_of_recoveries">%1s recoveries</string>
+    <string name="worldwide_total">Worldwide total</string>
 </resources>

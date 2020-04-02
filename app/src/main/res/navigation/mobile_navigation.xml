@@ -30,6 +30,6 @@
         android:id="@+id/countries"
         android:name="com.pshetye.covid19.ui.countries.fragments.CountriesFragment"
         app:moduleName="covid19"
-        android:label="Countries" />
+        android:label="@string/title_covid19" />
 
 </navigation>

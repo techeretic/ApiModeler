@@ -12,7 +12,7 @@ class ModuleViewHolder(
     private val view: View
 ) : RecyclerView.ViewHolder(view) {
     fun bind(supportedModule: SupportedModule) {
-        view.findViewById<TextView>(R.id.module_name).text = supportedModule.moduleName
+        view.findViewById<TextView>(R.id.module_name).setText(supportedModule.headerTitle)
         view.setOnClickListener(
             Navigation.createNavigateOnClickListener(supportedModule.navigationRes)
         )

@@ -1,55 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginBottom="8dp">
-
-    <TextView
-        android:id="@+id/country_name"
+    android:layout_margin="4dp"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/item_country_padding"
-        android:textStyle="italic|bold"
-        android:textSize="@dimen/item_module_text_size"
-        android:autoSizeTextType="uniform"
-        android:layout_margin="4dp"
-        tools:text="Country Name" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/cases"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:textStyle="italic|bold"
-        android:padding="@dimen/item_cases_padding"
-        tools:text="@string/number_of_cases"/>
+        <TextView
+            android:id="@+id/country_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/item_country_padding"
+            android:textStyle="italic|bold"
+            android:textSize="@dimen/item_module_text_size"
+            android:autoSizeTextType="uniform"
+            android:layout_margin="4dp"
+            tools:text="Country Name" />
 
-    <TextView
-        android:id="@+id/recoveries"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:textStyle="italic|bold"
-        android:padding="@dimen/item_cases_padding"
-        tools:text="@string/number_of_recoveries" />
+        <TextView
+            android:id="@+id/cases"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_margin="4dp"
+            android:textStyle="italic|bold"
+            android:paddingTop="@dimen/item_cases_padding"
+            android:paddingBottom="@dimen/item_cases_padding"
+            android:paddingStart="@dimen/item_cases_padding"
+            android:paddingEnd="@dimen/item_cases_end_padding"
+            tools:text="@string/number_of_cases"/>
 
-    <TextView
-        android:id="@+id/deaths"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:textStyle="italic|bold"
-        android:padding="@dimen/item_cases_padding"
-        android:background="#EF9C9C"
-        tools:text="@string/number_of_deaths" />
+        <TextView
+            android:id="@+id/recoveries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_margin="4dp"
+            android:textStyle="italic|bold"
+            android:paddingTop="@dimen/item_cases_padding"
+            android:paddingBottom="@dimen/item_cases_padding"
+            android:paddingStart="@dimen/item_cases_padding"
+            android:paddingEnd="@dimen/item_cases_end_padding"
+            tools:text="@string/number_of_recoveries" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimaryDark"/>
+        <TextView
+            android:id="@+id/deaths"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_margin="4dp"
+            android:textStyle="italic|bold"
+            android:paddingTop="@dimen/item_cases_padding"
+            android:paddingBottom="@dimen/item_cases_padding"
+            android:paddingStart="@dimen/item_cases_padding"
+            android:paddingEnd="@dimen/item_cases_end_padding"
+            android:background="@drawable/deaths_text_bg"
+            tools:text="@string/number_of_deaths" />
 
-</LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

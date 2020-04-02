@@ -1,6 +1,7 @@
 package com.pshetye.apimodeler
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -30,6 +31,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
         ))
         with (findNavController(R.id.nav_host_fragment)) {
             setupActionBarWithNavController(this, appBarConfiguration)
+            addOnDestinationChangedListener { _, destination, _ ->
+                if(destination.id == R.id.navigation_home) {
+                    showBottomNavigation()
+                } else {
+                    hideBottomNavigation()
+                }
+            }
             nav_view.setupWithNavController(this)
         }
     }
@@ -44,5 +52,27 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
 
     private fun initializeActivityComponent() {
         activityComponent = DaggerActivityComponent.factory().create()
+    }
+
+    private fun hideBottomNavigation() {
+        // bottom_navigation is BottomNavigationView
+        with(nav_view) {
+            if (visibility == View.VISIBLE && alpha == 1f) {
+                animate()
+                    .alpha(0f)
+                    .withEndAction { visibility = View.GONE }
+                    .duration = 500
+            }
+        }
+    }
+
+    private fun showBottomNavigation() {
+        // bottom_navigation is BottomNavigationView
+        with(nav_view) {
+            visibility = View.VISIBLE
+            animate()
+                .alpha(1f)
+                .duration = 500
+        }
     }
 }
