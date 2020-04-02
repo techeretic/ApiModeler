@@ -3,20 +3,21 @@ package com.pshetye.covid19.ui.countries.recyclerview
 import androidx.recyclerview.widget.DiffUtil
 import com.pshetye.covid19.models.Data
 import com.pshetye.covid19.ui.countries.viewmodels.CountryViewDataModel
+import com.pshetye.covid19.ui.countries.viewmodels.ViewDataModel
 import dagger.Reusable
 import javax.inject.Inject
 
 @Reusable
-class CountriesAsyncDiff @Inject constructor() : DiffUtil.ItemCallback<CountryViewDataModel>() {
+class CountriesAsyncDiff @Inject constructor() : DiffUtil.ItemCallback<ViewDataModel>() {
     override fun areItemsTheSame(
-        oldItem: CountryViewDataModel,
-        newItem: CountryViewDataModel
+        oldItem: ViewDataModel,
+        newItem: ViewDataModel
     ): Boolean =
-        oldItem.countryName == newItem.countryName
+        oldItem.uid == newItem.uid
 
     override fun areContentsTheSame(
-        oldItem: CountryViewDataModel,
-        newItem: CountryViewDataModel
+        oldItem: ViewDataModel,
+        newItem: ViewDataModel
     ): Boolean =
-        oldItem.countryName == newItem.countryName
+        oldItem.uid == newItem.uid
 }
