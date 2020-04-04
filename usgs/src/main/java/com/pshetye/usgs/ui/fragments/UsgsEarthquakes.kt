@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
 import com.pshetye.usgs.R
 import com.pshetye.usgs.di.components.DaggerUsgsComponent
@@ -33,32 +34,57 @@ class UsgsEarthquakes : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        initializeUsgsComponent(inflater.context)
-        usgsComponent.inject(this)
+        initializeUsgsComponent(inflater.context).inject(this)
 
         val root = inflater.inflate(R.layout.usgs_earthquakes_fragment, container, false)
 
-        val recyclerView = root.findViewById<RecyclerView>(R.id.earthquakes)
-        recyclerView.layoutManager = LinearLayoutManager(inflater.context)
-        recyclerView.adapter = earthquakesAdapter
+        setupRecyclerView(root)
+
+        with(getViewModel()) {
+            val swipeRefreshLayout = root.findViewById<SwipeRefreshLayout>(R.id.refresher)
+
+            setupSwipeRefreshLayout(this, swipeRefreshLayout)
+
+            triggerInitialRequest(this, swipeRefreshLayout)
+        }
 
         return root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val viewModel = ViewModelProvider(this, usgsViewModelFactory)
-            .get(UsgsEarthquakesViewModel::class.java)
-        viewModel.fetchEarthQuakes()
+    private fun initializeUsgsComponent(context: Context): UsgsComponent {
+        usgsComponent = DaggerUsgsComponent.factory()
+            .create((context as ProvideActivityComponent).getActivityComponent())
+        return usgsComponent
+    }
 
+    private fun setupRecyclerView(rootView: View) =
+        with(rootView.findViewById<RecyclerView>(R.id.earthquakes)) {
+            layoutManager = LinearLayoutManager(rootView.context)
+            adapter = earthquakesAdapter
+        }
+
+    private fun getViewModel(): UsgsEarthquakesViewModel =
+        ViewModelProvider(this, usgsViewModelFactory).get(UsgsEarthquakesViewModel::class.java)
+
+    private fun setupSwipeRefreshLayout(
+        viewModel: UsgsEarthquakesViewModel,
+        swipeRefreshLayout: SwipeRefreshLayout
+    ) {
+        swipeRefreshLayout.setOnRefreshListener {
+            earthquakesAdapter.submitList(emptyList())
+            viewModel.fetchEarthQuakes()
+        }
         viewModel.earthquakes.observe(viewLifecycleOwner, Observer {
+            swipeRefreshLayout.isRefreshing = false
             earthquakesAdapter.submitList(it)
         })
     }
 
-    private fun initializeUsgsComponent(context: Context) {
-        usgsComponent = DaggerUsgsComponent.factory()
-            .create((context as ProvideActivityComponent).getActivityComponent())
+    private fun triggerInitialRequest(
+        viewModel: UsgsEarthquakesViewModel,
+        swipeRefreshLayout: SwipeRefreshLayout
+    ) {
+        swipeRefreshLayout.isRefreshing = true
+        viewModel.fetchEarthQuakes()
     }
-
 }

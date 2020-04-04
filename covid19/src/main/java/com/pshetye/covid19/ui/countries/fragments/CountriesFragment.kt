@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
 import com.pshetye.covid19.R
 import com.pshetye.covid19.di.components.Covid19Component
@@ -38,21 +37,19 @@ class CountriesFragment : Fragment() {
 
         val rootView = inflater.inflate(R.layout.countries_fragment, container, false)
 
+        rootView.findViewById<SwipeRefreshLayout>(R.id.refresher)
+
         setupRecyclerView(rootView)
 
-        return rootView
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
         with(getViewModel()) {
-            fetchCovidStatus()
+            val swipeRefreshLayout = rootView.findViewById<SwipeRefreshLayout>(R.id.refresher)
 
-            covid19CasesPerCountry.observe(viewLifecycleOwner, Observer {
-                countriesAdapter.submitList(it)
-            })
+            setupSwipeRefreshLayout(this, swipeRefreshLayout)
+
+            triggerInitialRequest(this, swipeRefreshLayout)
         }
+
+        return rootView
     }
 
     private fun initializeCovid19Component(context: Context): Covid19Component {
@@ -82,4 +79,21 @@ class CountriesFragment : Fragment() {
 
     private fun getViewModel(): CountriesViewModel = ViewModelProvider(this, countriesViewModelFactory)
         .get(CountriesViewModel::class.java)
+
+    private fun setupSwipeRefreshLayout(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
+        swipeRefreshLayout.setOnRefreshListener {
+            countriesAdapter.submitList(emptyList())
+            viewModel.fetchCovidStatus()
+        }
+
+        viewModel.covid19CasesPerCountry.observe(viewLifecycleOwner, Observer {
+            swipeRefreshLayout.isRefreshing = false
+            countriesAdapter.submitList(it)
+        })
+    }
+
+    private fun triggerInitialRequest(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
+        swipeRefreshLayout.isRefreshing = true
+        viewModel.fetchCovidStatus()
+    }
 }
