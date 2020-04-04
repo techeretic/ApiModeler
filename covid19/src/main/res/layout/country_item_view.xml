@@ -20,6 +20,8 @@
             android:padding="@dimen/item_country_padding"
             android:textStyle="italic|bold"
             android:textSize="@dimen/item_module_text_size"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:autoSizeTextType="uniform"
             android:layout_margin="4dp"
             tools:text="Country Name" />

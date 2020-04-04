@@ -65,7 +65,17 @@ class CountriesFragment : Fragment() {
 
     private fun setupRecyclerView(rootView: View) {
         rootView.findViewById<RecyclerView>(R.id.countries).apply {
-            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            layoutManager = GridLayoutManager(context, 2).apply {
+                spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        return if (position == 0) {
+                            2
+                        } else {
+                            1
+                        }
+                    }
+                }
+            }
             adapter = countriesAdapter
         }
     }
