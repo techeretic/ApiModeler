@@ -5,5 +5,6 @@ import androidx.annotation.StringRes
 
 data class SupportedModule(
     @StringRes val headerTitle: Int,
-    @IdRes val navigationRes: Int
+    @IdRes val navigationRes: Int,
+    val apiSource: String
 )

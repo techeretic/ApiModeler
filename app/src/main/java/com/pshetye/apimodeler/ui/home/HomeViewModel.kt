@@ -10,8 +10,16 @@ class HomeViewModel : ViewModel() {
     val supportedModules: LiveData<List<SupportedModule>> = MutableLiveData<List<SupportedModule>>()
         .apply {
             value = listOf(
-                SupportedModule(R.string.title_usgs, R.id.action_navigation_home_to_usgsEarthquakes),
-                SupportedModule(R.string.title_covid19, R.id.action_navigation_home_to_countries)
+                SupportedModule(
+                    R.string.title_usgs,
+                    R.id.action_navigation_home_to_usgsEarthquakes,
+                    "https://earthquake.usgs.gov/"
+                ),
+                SupportedModule(
+                    R.string.title_covid19,
+                    R.id.action_navigation_home_to_countries,
+                    "https://corona-api.com/"
+                )
             )
         }
 }
