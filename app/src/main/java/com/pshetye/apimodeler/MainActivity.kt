@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
     }
 
     private fun initializeActivityComponent() {
-        activityComponent = DaggerActivityComponent.factory().create()
+        activityComponent = DaggerActivityComponent.factory().create(applicationContext)
     }
 
     private fun hideBottomNavigation() {

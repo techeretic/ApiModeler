@@ -1,19 +1,19 @@
 package com.pshetye.apimodeler.di.components
 
+import android.content.Context
 import com.pshetye.apimodeler.MainActivity
-import com.pshetye.apimodeler.di.modules.AppModule
+import com.pshetye.apimodeler.di.qualifiers.Cached
+import com.pshetye.apimodeler.di.qualifiers.Default
 import com.pshetye.apimodeler.di.modules.DeserializationModule
 import com.pshetye.apimodeler.di.modules.NetworkModule
-import com.pshetye.apimodeler.kit.ratelimit.RateLimiterFactory
+import dagger.BindsInstance
 import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import java.util.Calendar
 import javax.inject.Singleton
 
 @[Singleton Component(
     modules = [
-        AppModule::class,
         DeserializationModule::class,
         NetworkModule::class
     ]
@@ -21,16 +21,18 @@ import javax.inject.Singleton
 interface ActivityComponent {
     @Component.Factory
     interface Factory {
-        fun create(): ActivityComponent
+        fun create(
+            @BindsInstance applicationContext: Context
+        ): ActivityComponent
     }
 
+    @Default
     fun getBaseOkHttpClientBuilder(): OkHttpClient.Builder
 
+    @Cached
+    fun getCachedOkHttpClientBuilder(): OkHttpClient.Builder
+
     fun getBaseRetrofitBuilder(): Retrofit.Builder
-
-    fun getRateLimiterFactory(): RateLimiterFactory
-
-    fun getCalendar(): Calendar
 
     fun getFragmentComponentFactory(): FragmentComponent.Factory
 

@@ -1,5 +1,6 @@
 package com.pshetye.covid19.di.modules
 
+import com.pshetye.apimodeler.di.qualifiers.Cached
 import com.pshetye.covid19.di.annotations.URL
 import com.pshetye.covid19.di.scopes.Covid19
 import com.pshetye.covid19.repository.network.Covid19Service
@@ -16,7 +17,7 @@ object NetworkModule {
     @[Provides Covid19]
     fun provideRetrofit(
         @URL baseUrl: String,
-        okHttpClientBuilder: OkHttpClient.Builder,
+        @Cached okHttpClientBuilder: OkHttpClient.Builder,
         retrofitBuilder: Retrofit.Builder
     ): Retrofit {
         return retrofitBuilder
