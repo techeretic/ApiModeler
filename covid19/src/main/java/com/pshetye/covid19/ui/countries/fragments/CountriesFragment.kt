@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -18,6 +21,8 @@ import com.pshetye.covid19.di.components.DaggerCovid19Component
 import com.pshetye.covid19.ui.countries.recyclerview.CountriesAdapter
 import com.pshetye.covid19.ui.countries.viewmodels.CountriesViewModel
 import com.pshetye.covid19.ui.countries.viewmodels.CountriesViewModelFactory
+import kotlinx.android.synthetic.main.countries_bottom_sheet_main.*
+import kotlinx.android.synthetic.main.countries_fragment_with_bottom_sheet.*
 import javax.inject.Inject
 
 class CountriesFragment : Fragment() {
@@ -29,27 +34,31 @@ class CountriesFragment : Fragment() {
     @Inject
     lateinit var countriesViewModelFactory: CountriesViewModelFactory
 
+    private var sortedBy = "cases"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         initializeCovid19Component(inflater.context).inject(this)
 
-        val rootView = inflater.inflate(R.layout.countries_fragment, container, false)
+        return inflater.inflate(R.layout.countries_fragment_with_bottom_sheet, container, false)
+    }
 
-        rootView.findViewById<SwipeRefreshLayout>(R.id.refresher)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        sorted_by.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_countries_to_sort)
+        )
+        sorted_by.text = view.context.getString(R.string.sorted_by, sortedBy)
 
-        setupRecyclerView(rootView)
+        setupRecyclerView(view)
 
         with(getViewModel()) {
-            val swipeRefreshLayout = rootView.findViewById<SwipeRefreshLayout>(R.id.refresher)
 
-            setupSwipeRefreshLayout(this, swipeRefreshLayout)
+            setupSwipeRefreshLayout(this, refresher)
 
-            triggerInitialRequest(this, swipeRefreshLayout)
+            triggerInitialRequest(this, refresher)
         }
-
-        return rootView
     }
 
     private fun initializeCovid19Component(context: Context): Covid19Component {
@@ -82,7 +91,6 @@ class CountriesFragment : Fragment() {
 
     private fun setupSwipeRefreshLayout(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
         swipeRefreshLayout.setOnRefreshListener {
-            countriesAdapter.submitList(emptyList())
             viewModel.fetchCovidStatus()
         }
 

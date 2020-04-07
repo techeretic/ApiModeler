@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import java.util.*
 
 sealed class ViewDataModel(
-    val uid: String = UUID.randomUUID().toString()
+    val uid: String
 )
 
 class CountryViewDataModel(
@@ -13,7 +13,9 @@ class CountryViewDataModel(
     val recovered: Int,
     val critical: Int,
     val deaths: Int
-) : ViewDataModel()
+) : ViewDataModel(
+    countryName + (cases + recovered + critical + deaths).toString()
+)
 
 class TotalViewDataModel(
     @StringRes val title: Int,
@@ -22,7 +24,9 @@ class TotalViewDataModel(
     val recovered: Long,
     val critical: Long,
     val deaths: Long
-) : ViewDataModel()
+) : ViewDataModel(
+    (cases + recovered + critical + deaths).toString()
+)
 
 const val TOTAL_VIEW_TYPE = 100
 const val COUNTRY_VIEW_TYPE = 101

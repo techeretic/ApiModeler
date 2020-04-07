@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
             R.id.navigation_home
         ))
         with (findNavController(R.id.nav_host_fragment)) {
-            setupActionBarWithNavController(this, appBarConfiguration)
             addOnDestinationChangedListener { _, destination, _ ->
                 if(destination.id == R.id.navigation_home) {
                     showBottomNavigation()
