@@ -44,7 +44,7 @@
         <TextView
             android:id="@+id/deaths"
             style="@style/country_values"
-            android:background="@drawable/deaths_text_bg"
+            android:background="@drawable/sorted_by_text_bg"
             tools:text="@string/number_of_deaths" />
 
     </LinearLayout>

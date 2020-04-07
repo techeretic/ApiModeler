@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pshetye.covid19.R
-import com.pshetye.covid19.models.Data
 import com.pshetye.covid19.ui.countries.viewmodels.CountryViewDataModel
 
 class CountryViewHolder(

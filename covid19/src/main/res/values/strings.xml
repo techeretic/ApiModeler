@@ -10,6 +10,8 @@
     <string name="cases">cases</string>
     <string name="sort_by_recovered">Sort by recovered</string>
     <string name="recoveries">recoveries</string>
+    <string name="sort_by_critical">Sort by critical</string>
+    <string name="critical">critical</string>
     <string name="sort_by_deaths">Sort by deaths</string>
     <string name="deaths">deaths</string>
     <string name="sorted_by">Sorted by %1s</string>

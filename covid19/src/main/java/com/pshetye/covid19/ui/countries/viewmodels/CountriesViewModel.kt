@@ -9,7 +9,6 @@ import com.pshetye.covid19.repository.network.Covid19Service
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import java.util.*
 import javax.inject.Inject
 
 class CountriesViewModel @Inject constructor(
@@ -17,16 +16,24 @@ class CountriesViewModel @Inject constructor(
 ) : ViewModel() {
     val covid19CasesPerCountry: MutableLiveData<List<ViewDataModel>> = MutableLiveData()
 
-    fun fetchCovidStatus(): Disposable =
-        fetchCovidInfoFromNetwork()
+    fun fetchCovidStatus(@SortedBy sortedBy: String): Disposable =
+        fetchCovidInfoFromNetwork(sortedBy)
 
-    private fun fetchCovidInfoFromNetwork(): Disposable {
+    private fun fetchCovidInfoFromNetwork(@SortedBy sortedBy: String): Disposable {
         return covid19Service.getCountries()
             .map { response ->
                 val result = (response.data ?: emptyList())
                     .filter { (it.latest_data?.confirmed ?: 0) > 0 }
-                    .sortedByDescending { it.latest_data!!.confirmed }
-                    .map { it.toViewDataModel()!! }
+                    .sortedByDescending {
+                        when(sortedBy) {
+                            SORT_OPTION_CASES -> it.latest_data!!.confirmed
+                            SORT_OPTION_RECOVERIES -> it.latest_data!!.recovered
+                            SORT_OPTION_CRITICAL -> it.latest_data!!.critical
+                            SORT_OPTION_DEATHS -> it.latest_data!!.deaths
+                            else -> it.latest_data!!.confirmed
+                        }
+                    }
+                    .map { it.toViewDataModel(sortedBy)!! }
                 var cases: Long = 0
                 var recovered: Long = 0
                 var critical: Long = 0
@@ -39,6 +46,7 @@ class CountriesViewModel @Inject constructor(
                 }
                 mutableListOf<ViewDataModel>(
                     TotalViewDataModel(
+                        sortedBy = sortedBy,
                         title = R.string.worldwide_total,
                         countries = result.size,
                         cases = cases,

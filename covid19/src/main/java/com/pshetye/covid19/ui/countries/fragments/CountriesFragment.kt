@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -19,8 +19,7 @@ import com.pshetye.covid19.R
 import com.pshetye.covid19.di.components.Covid19Component
 import com.pshetye.covid19.di.components.DaggerCovid19Component
 import com.pshetye.covid19.ui.countries.recyclerview.CountriesAdapter
-import com.pshetye.covid19.ui.countries.viewmodels.CountriesViewModel
-import com.pshetye.covid19.ui.countries.viewmodels.CountriesViewModelFactory
+import com.pshetye.covid19.ui.countries.viewmodels.*
 import kotlinx.android.synthetic.main.countries_bottom_sheet_main.*
 import kotlinx.android.synthetic.main.countries_fragment_with_bottom_sheet.*
 import javax.inject.Inject
@@ -34,7 +33,10 @@ class CountriesFragment : Fragment() {
     @Inject
     lateinit var countriesViewModelFactory: CountriesViewModelFactory
 
-    private var sortedBy = "cases"
+    @SortedBy
+    private var sortedBy: String = SORT_OPTION_CASES
+
+    private val sharedViewDataModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +51,7 @@ class CountriesFragment : Fragment() {
         sorted_by.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_countries_to_sort)
         )
-        sorted_by.text = view.context.getString(R.string.sorted_by, sortedBy)
+        updateSortedByText(view.context)
 
         setupRecyclerView(view)
 
@@ -57,7 +59,9 @@ class CountriesFragment : Fragment() {
 
             setupSwipeRefreshLayout(this, refresher)
 
-            triggerInitialRequest(this, refresher)
+            setupSharedViewModel(this, refresher)
+
+            triggerRequest(this, refresher)
         }
     }
 
@@ -91,7 +95,7 @@ class CountriesFragment : Fragment() {
 
     private fun setupSwipeRefreshLayout(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
         swipeRefreshLayout.setOnRefreshListener {
-            viewModel.fetchCovidStatus()
+            viewModel.fetchCovidStatus(sortedBy)
         }
 
         viewModel.covid19CasesPerCountry.observe(viewLifecycleOwner, Observer {
@@ -100,8 +104,35 @@ class CountriesFragment : Fragment() {
         })
     }
 
-    private fun triggerInitialRequest(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
+    private fun setupSharedViewModel(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
+        sharedViewDataModel.sortOptionLiveData.observe(viewLifecycleOwner, Observer {
+            sortedBy = it
+            triggerRequest(viewModel, swipeRefreshLayout)
+            updateSortedByText(swipeRefreshLayout.context)
+        })
+    }
+
+    private fun triggerRequest(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
         swipeRefreshLayout.isRefreshing = true
-        viewModel.fetchCovidStatus()
+        viewModel.fetchCovidStatus(sortedBy)
+    }
+
+    private fun getSortedByStringRes(context: Context, @SortedBy sortedBy: String): String {
+        @StringRes
+        val sortedByStringRes = when (sortedBy) {
+            SORT_OPTION_CASES -> R.string.cases
+            SORT_OPTION_RECOVERIES -> R.string.recoveries
+            SORT_OPTION_CRITICAL -> R.string.critical
+            SORT_OPTION_DEATHS -> R.string.deaths
+            else -> throw IllegalStateException("Unsupported sort option")
+        }
+        return context.getString(sortedByStringRes)
+    }
+
+    private fun updateSortedByText(context: Context) {
+        sorted_by.text = context.getString(
+            R.string.sorted_by,
+            getSortedByStringRes(context, sortedBy)
+        )
     }
 }

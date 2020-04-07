@@ -1,7 +1,7 @@
 package com.pshetye.covid19.models
 
-import com.pshetye.covid19.ui.countries.viewmodels.CountriesViewModel
 import com.pshetye.covid19.ui.countries.viewmodels.CountryViewDataModel
+import com.pshetye.covid19.ui.countries.viewmodels.SortedBy
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -15,9 +15,10 @@ data class Data(
     val updated_at: String?
 )
 
-fun Data.toViewDataModel(): CountryViewDataModel? =
+fun Data.toViewDataModel(@SortedBy sortedBy: String): CountryViewDataModel? =
     latest_data?.let {
         CountryViewDataModel(
+            sortedBy,
             name!!,
             it.confirmed,
             it.recovered,
