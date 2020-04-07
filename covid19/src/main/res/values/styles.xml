@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="country_values">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/item_cases_padding</item>
+        <item name="android:paddingStart">@dimen/item_cases_padding</item>
+        <item name="android:paddingBottom">@dimen/item_cases_padding</item>
+        <item name="android:paddingEnd">@dimen/item_cases_end_padding</item>
+        <item name="android:textStyle">italic|bold</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:gravity">end</item>
+    </style>
+    <style name="total_values" parent="country_values">
+        <item name="android:textSize">@dimen/item_total_text_size</item>
+    </style>
+</resources>

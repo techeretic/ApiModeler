@@ -28,41 +28,22 @@
 
         <TextView
             android:id="@+id/cases"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:layout_margin="4dp"
-            android:textStyle="italic|bold"
-            android:paddingTop="@dimen/item_cases_padding"
-            android:paddingBottom="@dimen/item_cases_padding"
-            android:paddingStart="@dimen/item_cases_padding"
-            android:paddingEnd="@dimen/item_cases_end_padding"
+            style="@style/country_values"
             tools:text="@string/number_of_cases"/>
 
         <TextView
             android:id="@+id/recoveries"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:layout_margin="4dp"
-            android:textStyle="italic|bold"
-            android:paddingTop="@dimen/item_cases_padding"
-            android:paddingBottom="@dimen/item_cases_padding"
-            android:paddingStart="@dimen/item_cases_padding"
-            android:paddingEnd="@dimen/item_cases_end_padding"
+            style="@style/country_values"
             tools:text="@string/number_of_recoveries" />
 
         <TextView
+            android:id="@+id/critical"
+            style="@style/country_values"
+            tools:text="@string/number_of_critical" />
+
+        <TextView
             android:id="@+id/deaths"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:layout_margin="4dp"
-            android:textStyle="italic|bold"
-            android:paddingTop="@dimen/item_cases_padding"
-            android:paddingBottom="@dimen/item_cases_padding"
-            android:paddingStart="@dimen/item_cases_padding"
-            android:paddingEnd="@dimen/item_cases_end_padding"
+            style="@style/country_values"
             android:background="@drawable/deaths_text_bg"
             tools:text="@string/number_of_deaths" />
 

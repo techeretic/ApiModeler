@@ -21,6 +21,7 @@ fun Data.toViewDataModel(): CountryViewDataModel? =
             name!!,
             it.confirmed,
             it.recovered,
+            it.critical,
             it.deaths
         )
     }

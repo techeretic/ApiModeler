@@ -29,10 +29,12 @@ class CountriesViewModel @Inject constructor(
                     .map { it.toViewDataModel()!! }
                 var cases: Long = 0
                 var recovered: Long = 0
+                var critical: Long = 0
                 var deaths: Long = 0
                 result.forEach {
                     cases += it.cases
                     recovered += it.recovered
+                    critical += it.critical
                     deaths += it.deaths
                 }
                 mutableListOf<ViewDataModel>(
@@ -41,6 +43,7 @@ class CountriesViewModel @Inject constructor(
                         countries = result.size,
                         cases = cases,
                         recovered = recovered,
+                        critical = critical,
                         deaths = deaths
                     )
                 ).apply { addAll(result) }

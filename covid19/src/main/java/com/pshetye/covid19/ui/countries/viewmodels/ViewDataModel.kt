@@ -11,6 +11,7 @@ class CountryViewDataModel(
     val countryName: String,
     val cases: Int,
     val recovered: Int,
+    val critical: Int,
     val deaths: Int
 ) : ViewDataModel()
 
@@ -19,6 +20,7 @@ class TotalViewDataModel(
     val countries: Int,
     val cases: Long,
     val recovered: Long,
+    val critical: Long,
     val deaths: Long
 ) : ViewDataModel()
 

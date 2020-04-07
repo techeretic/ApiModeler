@@ -17,6 +17,8 @@ class CountryViewHolder(
             .getString(R.string.number_of_cases, NumberFormat.getInstance().format(data.cases))
         view.findViewById<TextView>(R.id.recoveries).text = view.context
             .getString(R.string.number_of_recoveries, NumberFormat.getInstance().format(data.recovered))
+        view.findViewById<TextView>(R.id.critical).text = view.context
+            .getString(R.string.number_of_critical, NumberFormat.getInstance().format(data.critical))
         view.findViewById<TextView>(R.id.deaths).text = view.context
             .getString(R.string.number_of_deaths, NumberFormat.getInstance().format(data.deaths))
     }
