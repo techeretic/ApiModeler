@@ -6,4 +6,13 @@
     <string name="number_of_critical">%1s critical</string>
     <string name="number_of_countries">%1s countries affected</string>
     <string name="worldwide_total">Worldwide</string>
+    <string name="sort_by_cases">Sort by cases</string>
+    <string name="cases">cases</string>
+    <string name="sort_by_recovered">Sort by recovered</string>
+    <string name="recoveries">recoveries</string>
+    <string name="sort_by_critical">Sort by critical</string>
+    <string name="critical">critical</string>
+    <string name="sort_by_deaths">Sort by deaths</string>
+    <string name="deaths">deaths</string>
+    <string name="sorted_by">Sorted by %1s</string>
 </resources>

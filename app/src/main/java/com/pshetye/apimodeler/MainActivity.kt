@@ -2,18 +2,14 @@ package com.pshetye.apimodeler
 
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.pshetye.apimodeler.di.components.ActivityComponent
 import com.pshetye.apimodeler.di.components.DaggerActivityComponent
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
-import com.pshetye.apimodeler.ui.home.recyclerview.ModuleAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityComponent {
 
@@ -30,7 +26,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
             R.id.navigation_home
         ))
         with (findNavController(R.id.nav_host_fragment)) {
-            setupActionBarWithNavController(this, appBarConfiguration)
             addOnDestinationChangedListener { _, destination, _ ->
                 if(destination.id == R.id.navigation_home) {
                     showBottomNavigation()

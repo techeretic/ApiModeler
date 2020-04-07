@@ -1,8 +1,6 @@
 package com.pshetye.covid19.ui.countries.recyclerview
 
 import androidx.recyclerview.widget.DiffUtil
-import com.pshetye.covid19.models.Data
-import com.pshetye.covid19.ui.countries.viewmodels.CountryViewDataModel
 import com.pshetye.covid19.ui.countries.viewmodels.ViewDataModel
 import dagger.Reusable
 import javax.inject.Inject

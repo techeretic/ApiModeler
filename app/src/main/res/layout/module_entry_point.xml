@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/item_module_padding"
             android:layout_marginBottom="8dp"
-            android:textStyle="italic|bold"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
             android:textSize="@dimen/item_module_text_size"
             tools:text="USGS Earthquakes" />
 
@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             android:paddingStart="@dimen/item_module_api_padding"
             android:paddingBottom="@dimen/item_module_api_padding"
             android:paddingEnd="@dimen/item_module_api_padding"

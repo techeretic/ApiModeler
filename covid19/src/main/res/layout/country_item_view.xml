@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/item_country_padding"
-            android:textStyle="italic|bold"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
             android:textSize="@dimen/item_module_text_size"
             android:ellipsize="end"
             android:maxLines="1"
@@ -44,7 +44,7 @@
         <TextView
             android:id="@+id/deaths"
             style="@style/country_values"
-            android:background="@drawable/deaths_text_bg"
+            android:background="@drawable/sorted_by_text_bg"
             tools:text="@string/number_of_deaths" />
 
     </LinearLayout>

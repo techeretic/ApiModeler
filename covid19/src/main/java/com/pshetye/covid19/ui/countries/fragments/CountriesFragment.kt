@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -16,8 +19,9 @@ import com.pshetye.covid19.R
 import com.pshetye.covid19.di.components.Covid19Component
 import com.pshetye.covid19.di.components.DaggerCovid19Component
 import com.pshetye.covid19.ui.countries.recyclerview.CountriesAdapter
-import com.pshetye.covid19.ui.countries.viewmodels.CountriesViewModel
-import com.pshetye.covid19.ui.countries.viewmodels.CountriesViewModelFactory
+import com.pshetye.covid19.ui.countries.viewmodels.*
+import kotlinx.android.synthetic.main.countries_bottom_sheet_main.*
+import kotlinx.android.synthetic.main.countries_fragment_with_bottom_sheet.*
 import javax.inject.Inject
 
 class CountriesFragment : Fragment() {
@@ -29,27 +33,36 @@ class CountriesFragment : Fragment() {
     @Inject
     lateinit var countriesViewModelFactory: CountriesViewModelFactory
 
+    @SortedBy
+    private var sortedBy: String = SORT_OPTION_CASES
+
+    private val sharedViewDataModel: SharedViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         initializeCovid19Component(inflater.context).inject(this)
 
-        val rootView = inflater.inflate(R.layout.countries_fragment, container, false)
+        return inflater.inflate(R.layout.countries_fragment_with_bottom_sheet, container, false)
+    }
 
-        rootView.findViewById<SwipeRefreshLayout>(R.id.refresher)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        sorted_by.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_countries_to_sort)
+        )
+        updateSortedByText(view.context)
 
-        setupRecyclerView(rootView)
+        setupRecyclerView(view)
 
         with(getViewModel()) {
-            val swipeRefreshLayout = rootView.findViewById<SwipeRefreshLayout>(R.id.refresher)
 
-            setupSwipeRefreshLayout(this, swipeRefreshLayout)
+            setupSwipeRefreshLayout(this, refresher)
 
-            triggerInitialRequest(this, swipeRefreshLayout)
+            setupSharedViewModel(this, refresher)
+
+            triggerRequest(this, refresher)
         }
-
-        return rootView
     }
 
     private fun initializeCovid19Component(context: Context): Covid19Component {
@@ -82,8 +95,7 @@ class CountriesFragment : Fragment() {
 
     private fun setupSwipeRefreshLayout(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
         swipeRefreshLayout.setOnRefreshListener {
-            countriesAdapter.submitList(emptyList())
-            viewModel.fetchCovidStatus()
+            viewModel.fetchCovidStatus(sortedBy)
         }
 
         viewModel.covid19CasesPerCountry.observe(viewLifecycleOwner, Observer {
@@ -92,8 +104,35 @@ class CountriesFragment : Fragment() {
         })
     }
 
-    private fun triggerInitialRequest(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
+    private fun setupSharedViewModel(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
+        sharedViewDataModel.sortOptionLiveData.observe(viewLifecycleOwner, Observer {
+            sortedBy = it
+            triggerRequest(viewModel, swipeRefreshLayout)
+            updateSortedByText(swipeRefreshLayout.context)
+        })
+    }
+
+    private fun triggerRequest(viewModel: CountriesViewModel, swipeRefreshLayout: SwipeRefreshLayout) {
         swipeRefreshLayout.isRefreshing = true
-        viewModel.fetchCovidStatus()
+        viewModel.fetchCovidStatus(sortedBy)
+    }
+
+    private fun getSortedByStringRes(context: Context, @SortedBy sortedBy: String): String {
+        @StringRes
+        val sortedByStringRes = when (sortedBy) {
+            SORT_OPTION_CASES -> R.string.cases
+            SORT_OPTION_RECOVERIES -> R.string.recoveries
+            SORT_OPTION_CRITICAL -> R.string.critical
+            SORT_OPTION_DEATHS -> R.string.deaths
+            else -> throw IllegalStateException("Unsupported sort option")
+        }
+        return context.getString(sortedByStringRes)
+    }
+
+    private fun updateSortedByText(context: Context) {
+        sorted_by.text = context.getString(
+            R.string.sorted_by,
+            getSortedByStringRes(context, sortedBy)
+        )
     }
 }

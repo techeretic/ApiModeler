@@ -2,10 +2,10 @@ package com.pshetye.apimodeler.di.components
 
 import android.content.Context
 import com.pshetye.apimodeler.MainActivity
-import com.pshetye.apimodeler.di.qualifiers.Cached
-import com.pshetye.apimodeler.di.qualifiers.Default
 import com.pshetye.apimodeler.di.modules.DeserializationModule
 import com.pshetye.apimodeler.di.modules.NetworkModule
+import com.pshetye.apimodeler.di.qualifiers.Cached
+import com.pshetye.apimodeler.di.qualifiers.Default
 import dagger.BindsInstance
 import dagger.Component
 import okhttp3.OkHttpClient
