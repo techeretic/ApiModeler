@@ -10,3 +10,5 @@ I will be attempting to use the following libraries/patterns/etc.
 - Motion Layout
 
 Feel free to leave any feedback
+
+![Android CI](https://github.com/techeretic/ApiModeler/workflows/Android%20CI/badge.svg)
