@@ -17,7 +17,7 @@ class HomeViewModel : ViewModel() {
                 ),
                 SupportedModule(
                     R.string.title_covid19,
-                    R.id.action_navigation_home_to_countries,
+                    R.id.action_navigation_home_to_covid,
                     "https://corona-api.com/"
                 )
             )

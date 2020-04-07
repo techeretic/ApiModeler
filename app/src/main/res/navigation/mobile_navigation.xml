@@ -16,8 +16,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/action_navigation_home_to_countries"
-            app:destination="@id/countries" />
+            android:id="@+id/action_navigation_home_to_covid"
+            app:destination="@id/covid" />
     </fragment>
     <fragment
         android:id="@+id/usgsEarthquakes"
@@ -26,10 +26,10 @@
         android:label="UsgsEarthquakes"
         tools:layout="@layout/usgs_earthquakes_fragment">
     </fragment>
-    <fragment
-        android:id="@+id/countries"
-        android:name="com.pshetye.covid19.ui.countries.fragments.CountriesFragment"
-        app:moduleName="covid19"
-        android:label="@string/title_covid19" />
+    <include-dynamic
+        android:id="@+id/covid"
+        app:graphPackage="com.pshetye.apimodeler.covid19"
+        app:graphResName="covid_navigation"
+        app:moduleName="covid19" />
 
 </navigation>
