@@ -119,7 +119,7 @@ class CountriesFragment : Fragment() {
 
     private fun getSortedByStringRes(context: Context, @SortedBy sortedBy: String): String {
         @StringRes
-        val sortedByStringRes = when (sortedBy) {
+        val sortedByStringRes: Int = when (sortedBy) {
             SORT_OPTION_CASES -> R.string.cases
             SORT_OPTION_RECOVERIES -> R.string.recoveries
             SORT_OPTION_CRITICAL -> R.string.critical
