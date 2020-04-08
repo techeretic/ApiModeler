@@ -19,3 +19,17 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew clean build
+    - name: upload covid debug apk
+      uses: actions/upload-artifact@v1
+      with:
+        name: covid_debug_apk
+        path: ./covid19/build/outputs/apk/debug/covid19-debug.apk
+    - name: upload usgs debug apk
+      with:
+        name: usgs_debug_apk
+        path: ./usgs/build/outputs/apk/debug/usgs-debug.apk
+    - name: upload app debug apk
+      with:
+        name: app_debug_apk
+        path: ./app/build/outputs/apk/debug/app-debug.apk
+
