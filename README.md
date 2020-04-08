@@ -6,7 +6,6 @@ I will be attempting to use the following libraries/patterns/etc.
 - Couroutines
 - Dynamic delivery
 - Jetpack
-- Navigation Framework
 - Motion Layout
 
 Feel free to leave any feedback
