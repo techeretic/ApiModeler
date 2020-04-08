@@ -14,6 +14,7 @@ import com.pshetye.apimodeler.R
 import com.pshetye.apimodeler.di.components.FragmentComponent
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
 import com.pshetye.apimodeler.ui.home.recyclerview.ModuleAdapter
+import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
@@ -28,26 +29,27 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val context = inflater.context
+        initializeFragmentComponent(inflater.context).inject(this)
 
-        initializeFragmentComponent(context)
-        fragmentComponent.inject(this)
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val recyclerView: RecyclerView = root.findViewById(R.id.modules)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = moduleAdapter
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        modules.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
+        modules.adapter = moduleAdapter
 
         val homeViewModel: HomeViewModel by viewModels()
         homeViewModel.supportedModules.observe(viewLifecycleOwner, Observer {
             moduleAdapter.submitList(it)
         })
-        return root
     }
 
-    private fun initializeFragmentComponent(context: Context) {
-        fragmentComponent = (context as ProvideActivityComponent).getActivityComponent()
+    private fun initializeFragmentComponent(context: Context): FragmentComponent =
+        (context as ProvideActivityComponent).getActivityComponent()
             .getFragmentComponentFactory()
             .create()
-    }
+            .apply {
+                fragmentComponent = this
+                return fragmentComponent
+            }
 }
