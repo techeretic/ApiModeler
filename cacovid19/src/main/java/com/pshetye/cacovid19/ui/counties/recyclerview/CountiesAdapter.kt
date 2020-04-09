@@ -31,7 +31,7 @@ class CountiesAdapter @Inject constructor(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItem(position)) {
             is CountyViewDataModel ->
-                (holder as CountyViewHolder).bind(getItem(position) as CountyViewDataModel)
+                (holder as CountyViewHolder).bind(getItem(position) as CountyViewDataModel, position)
             is TotalsViewDataModel ->
                 (holder as TotalsViewHolder).bind(getItem(position) as TotalsViewDataModel)
             is ErrorViewDataModel ->

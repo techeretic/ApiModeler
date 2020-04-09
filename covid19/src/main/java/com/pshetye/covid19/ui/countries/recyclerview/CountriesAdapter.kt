@@ -30,7 +30,7 @@ class CountriesAdapter @Inject constructor(
             is TotalViewDataModel ->
                 (holder as TotalViewHolder).bind(getItem(position) as TotalViewDataModel)
             is CountryViewDataModel ->
-                (holder as CountryViewHolder).bind(getItem(position) as CountryViewDataModel)
+                (holder as CountryViewHolder).bind(getItem(position) as CountryViewDataModel, position)
             is ErrorViewDataModel ->
                 (holder as ErrorViewHolder).bind((getItem(position) as ErrorViewDataModel).errorMessage)
         }

@@ -10,9 +10,10 @@ import com.pshetye.cacovid19.ui.counties.viewmodels.CountyViewDataModel
 class CountyViewHolder(
     private val view: View
 ): RecyclerView.ViewHolder(view) {
-    fun bind(data: CountyViewDataModel) = with(view) {
+    fun bind(data: CountyViewDataModel, position: Int) = with(view) {
         val numberFormat = NumberFormat.getInstance()
-        findViewById<TextView>(R.id.county_name).text = data.countyName
+        findViewById<TextView>(R.id.county_name).text =
+            context.getString(R.string.ordered_name, position, data.countyName)
         findViewById<TextView>(R.id.cases).text = view.context
             .getString(R.string.number_of_cases, numberFormat.format(data.cases))
         findViewById<TextView>(R.id.critical).text = view.context

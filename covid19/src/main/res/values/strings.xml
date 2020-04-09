@@ -15,4 +15,5 @@
     <string name="sort_by_deaths">Sort by deaths</string>
     <string name="deaths">deaths</string>
     <string name="sorted_by">Sorted by %1s</string>
+    <string name="ordered_name">%1d. %1s</string>
 </resources>
