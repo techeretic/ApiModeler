@@ -18,7 +18,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Gradle
-      run: ./gradlew clean build
+      run: ./gradlew clean -Dorg.gradle.console=plain --no-daemon build
     - name: upload covid debug apk
       uses: actions/upload-artifact@v1
       with:
