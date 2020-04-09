@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.pshetye.apimodeler.kit.viewholders.ErrorViewHolder
+import com.pshetye.apimodeler.kit.viewholders.getErrorViewHolder
 import com.pshetye.cacovid19.R
 import com.pshetye.cacovid19.ui.counties.viewmodels.*
 import java.lang.IllegalStateException
@@ -21,6 +23,7 @@ class CountiesAdapter @Inject constructor(
             TOTAL_VIEW_TYPE -> TotalsViewHolder(
                 inflater.inflate(R.layout.total_counties_item_view, parent, false)
             )
+            ERROR_VIEW_TYPE -> getErrorViewHolder(parent)
             else -> throw IllegalStateException("Unsupported")
         }
     }
@@ -31,6 +34,8 @@ class CountiesAdapter @Inject constructor(
                 (holder as CountyViewHolder).bind(getItem(position) as CountyViewDataModel)
             is TotalsViewDataModel ->
                 (holder as TotalsViewHolder).bind(getItem(position) as TotalsViewDataModel)
+            is ErrorViewDataModel ->
+                (holder as ErrorViewHolder).bind((getItem(position) as ErrorViewDataModel).errorMessage)
         }
     }
 
@@ -38,5 +43,6 @@ class CountiesAdapter @Inject constructor(
         when(getItem(position)) {
             is CountyViewDataModel -> COUNTY_VIEW_TYPE
             is TotalsViewDataModel -> TOTAL_VIEW_TYPE
+            is ErrorViewDataModel -> ERROR_VIEW_TYPE
         }
 }

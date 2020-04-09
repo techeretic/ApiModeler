@@ -34,6 +34,11 @@ class TotalViewDataModel(
     sortedBy
 )
 
+class ErrorViewDataModel(
+    val errorMessage: String
+) : ViewDataModel(errorMessage, SORT_OPTION_DEATHS)
+
+const val ERROR_VIEW_TYPE = 0
 const val TOTAL_VIEW_TYPE = 100
 const val COUNTRY_VIEW_TYPE = 101
 

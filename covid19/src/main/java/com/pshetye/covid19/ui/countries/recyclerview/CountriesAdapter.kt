@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.pshetye.apimodeler.kit.viewholders.ErrorViewHolder
+import com.pshetye.apimodeler.kit.viewholders.getErrorViewHolder
 import com.pshetye.covid19.R
 import com.pshetye.covid19.ui.countries.viewmodels.*
 import javax.inject.Inject
@@ -19,6 +21,7 @@ class CountriesAdapter @Inject constructor(
             COUNTRY_VIEW_TYPE -> CountryViewHolder(
                 LayoutInflater.from(parent.context).inflate(R.layout.country_item_view, parent, false)
             )
+            ERROR_VIEW_TYPE -> getErrorViewHolder(parent)
             else -> throw UnsupportedOperationException("$viewType is not supported")
         }
 
@@ -28,6 +31,8 @@ class CountriesAdapter @Inject constructor(
                 (holder as TotalViewHolder).bind(getItem(position) as TotalViewDataModel)
             is CountryViewDataModel ->
                 (holder as CountryViewHolder).bind(getItem(position) as CountryViewDataModel)
+            is ErrorViewDataModel ->
+                (holder as ErrorViewHolder).bind((getItem(position) as ErrorViewDataModel).errorMessage)
         }
     }
 
@@ -35,5 +40,6 @@ class CountriesAdapter @Inject constructor(
         when(getItem(position)) {
             is TotalViewDataModel -> TOTAL_VIEW_TYPE
             is CountryViewDataModel -> COUNTRY_VIEW_TYPE
+            is ErrorViewDataModel -> ERROR_VIEW_TYPE
         }
 }

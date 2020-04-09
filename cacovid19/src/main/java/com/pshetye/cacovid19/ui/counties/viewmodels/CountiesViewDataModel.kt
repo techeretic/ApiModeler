@@ -23,5 +23,10 @@ class TotalsViewDataModel(
     TotalsViewDataModel::class.simpleName + (totalCounties + cases + critical + deaths).toString()
 )
 
+class ErrorViewDataModel(
+    val errorMessage: String
+) : CountiesViewDataModel(errorMessage)
+
+const val ERROR_VIEW_TYPE = 0
 const val TOTAL_VIEW_TYPE = 100
 const val COUNTY_VIEW_TYPE = 101
