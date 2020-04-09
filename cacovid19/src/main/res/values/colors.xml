@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="deaths_highlight">#EF9C9C</color>
+    <color name="sort_option_bg">#5A5A5A</color>
+    <color name="selected_sort_option_bg">#E6E6E6</color>
+</resources>

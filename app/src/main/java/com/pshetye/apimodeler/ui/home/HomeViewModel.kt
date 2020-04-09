@@ -19,6 +19,11 @@ class HomeViewModel : ViewModel() {
                     R.string.title_covid19,
                     R.id.action_navigation_home_to_covid,
                     "https://corona-api.com/"
+                ),
+                SupportedModule(
+                    R.string.title_cacovid19,
+                    R.id.action_navigation_home_to_cacovid,
+                    "https://data.chhs.ca.gov/"
                 )
             )
         }

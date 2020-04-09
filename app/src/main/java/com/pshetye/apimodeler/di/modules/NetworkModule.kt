@@ -4,6 +4,7 @@ import android.content.Context
 import com.pshetye.apimodeler.di.qualifiers.Cached
 import com.pshetye.apimodeler.di.qualifiers.Default
 import com.pshetye.apimodeler.networking.cache.CacheInterceptor
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -50,9 +51,11 @@ object NetworkModule {
     }
 
     @[Provides Singleton]
-    fun provideBaseRetrofitBuilder(): Retrofit.Builder {
+    fun provideBaseRetrofitBuilder(
+        moshi: Moshi
+    ): Retrofit.Builder {
         return Retrofit.Builder()
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     }
 }

@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_navigation_home_to_covid"
             app:destination="@id/covid" />
+        <action
+            android:id="@+id/action_navigation_home_to_cacovid"
+            app:destination="@id/cacovid" />
     </fragment>
     <fragment
         android:id="@+id/usgsEarthquakes"
@@ -31,5 +34,10 @@
         app:graphPackage="com.pshetye.apimodeler.covid19"
         app:graphResName="covid_navigation"
         app:moduleName="covid19" />
+    <include-dynamic
+        android:id="@+id/cacovid"
+        app:graphPackage="com.pshetye.apimodeler.cacovid19"
+        app:graphResName="cacovid_navigation"
+        app:moduleName="cacovid19" />
 
 </navigation>

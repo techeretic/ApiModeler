@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/county_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/item_country_padding"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+            android:textSize="@dimen/item_module_text_size"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:layout_margin="4dp"
+            tools:text="Country Name" />
+
+        <TextView
+            android:id="@+id/cases"
+            style="@style/country_values"
+            tools:text="@string/number_of_cases"/>
+
+        <TextView
+            android:id="@+id/critical"
+            style="@style/country_values"
+            tools:text="@string/number_of_critical" />
+
+        <TextView
+            android:id="@+id/deaths"
+            style="@style/country_values"
+            android:background="@drawable/county_sorted_by_text_bg"
+            tools:text="@string/number_of_deaths" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

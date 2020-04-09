@@ -9,4 +9,5 @@
         <item>@string/title_usgs</item>
     </string-array>
     <string name="title_covid19">Countries affected by COVID-19</string>
+    <string name="title_cacovid19">California counties affected by Covid-19</string>
 </resources>

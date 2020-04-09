@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Api Modeler</string>
-    <string name="title_home">@string/app_name</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_usgs">USGS EarthQuakes</string>
-    <string name="title_covid19">Countries affected by COVID-19</string>
-</resources>

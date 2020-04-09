@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:moduleName="cacovid19"
+    app:startDestination="@id/countiesFragment">
+
+    <fragment
+        android:id="@+id/countiesFragment"
+        android:name="com.pshetye.cacovid19.ui.counties.fragments.CountiesFragment"
+        android:label="@string/title_cacovid19" />
+</navigation>
