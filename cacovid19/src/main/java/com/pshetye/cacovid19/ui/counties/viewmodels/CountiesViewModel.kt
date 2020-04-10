@@ -19,16 +19,17 @@ class CountiesViewModel @Inject constructor(
     private val caCovid19Service: CaCovid19Service
 ) : ViewModel() {
 
-    private val dateFormat: DateFormat = SimpleDateFormat("M/d/YYY", Locale.getDefault())
+    private val dateFormat1: DateFormat = SimpleDateFormat("M/d/YYY", Locale.getDefault())
+    private val dateFormat2: DateFormat = SimpleDateFormat("MM/dd/YYY", Locale.getDefault())
 
     val countiesLiveData: MutableLiveData<List<CountiesViewDataModel>> =
         MutableLiveData()
 
     fun fetchCaliforniaCovidStatsViaSql(): Disposable {
-        return caCovid19Service.getCaliforniaCasesViaSql(getQuery(today))
+        return caCovid19Service.getCaliforniaCasesViaSql(getQuery(todayFormat1, todayFormat2))
             .flatMap {
                 if (it.result.records.isEmpty()) {
-                    caCovid19Service.getCaliforniaCasesViaSql(getQuery(yesterday))
+                    caCovid19Service.getCaliforniaCasesViaSql(getQuery(yesterdayFormat1, yesterdayFormat2))
                 } else {
                     Single.just(it)
                 }
@@ -71,21 +72,37 @@ class CountiesViewModel @Inject constructor(
         }
     }
 
-    private fun getQuery(date: String): String = "SELECT * from \"6cd8d424-dfaa-4bdd-9410-a3d656e1176e\" " +
-            "WHERE \"Most Recent Date\" = '$date'"
+    private fun getQuery(date1: String, date2: String): String =
+        "SELECT * from \"6cd8d424-dfaa-4bdd-9410-a3d656e1176e\" " +
+            "WHERE \"Most Recent Date\" like '$date1' OR \"Most Recent Date\" like '$date2'"
 
-    private val yesterday: String
+    private val yesterdayFormat1: String
         get() {
             with(Calendar.getInstance()) {
                 add(Calendar.DATE, -1)
-                return dateFormat.format(time)
+                return dateFormat1.format(time)
             }
         }
 
-    private val today: String
+    private val todayFormat1: String
         get() {
             with(Calendar.getInstance()) {
-                return dateFormat.format(time)
+                return dateFormat1.format(time)
+            }
+        }
+
+    private val yesterdayFormat2: String
+        get() {
+            with(Calendar.getInstance()) {
+                add(Calendar.DATE, -1)
+                return dateFormat2.format(time)
+            }
+        }
+
+    private val todayFormat2: String
+        get() {
+            with(Calendar.getInstance()) {
+                return dateFormat2.format(time)
             }
         }
 }
