@@ -11,11 +11,11 @@ class CountriesAsyncDiff @Inject constructor() : DiffUtil.ItemCallback<ViewDataM
         oldItem: ViewDataModel,
         newItem: ViewDataModel
     ): Boolean =
-        oldItem.uid == newItem.uid
+        oldItem.diff == newItem.diff
 
     override fun areContentsTheSame(
         oldItem: ViewDataModel,
         newItem: ViewDataModel
     ): Boolean =
-        oldItem.uid == newItem.uid
+        oldItem.diff == newItem.diff
 }

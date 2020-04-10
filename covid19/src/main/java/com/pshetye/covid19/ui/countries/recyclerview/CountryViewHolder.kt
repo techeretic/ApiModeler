@@ -10,10 +10,10 @@ import com.pshetye.covid19.ui.countries.viewmodels.CountryViewDataModel
 class CountryViewHolder(
     private val view: View
 ) : RecyclerView.ViewHolder(view) {
-    fun bind(data: CountryViewDataModel, position: Int) = with(view) {
+    fun bind(data: CountryViewDataModel) = with(view) {
         val numberFormat = NumberFormat.getInstance()
         findViewById<TextView>(R.id.country_name).text =
-            context.getString(R.string.ordered_name, position, data.countryName)
+            context.getString(R.string.ordered_name, data.localIndex, data.countryName)
         findViewById<TextView>(R.id.cases).text = view.context
             .getString(R.string.number_of_cases, numberFormat.format(data.cases))
         findViewById<TextView>(R.id.recoveries).text = view.context

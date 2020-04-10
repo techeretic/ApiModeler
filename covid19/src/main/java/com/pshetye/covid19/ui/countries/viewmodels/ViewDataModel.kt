@@ -7,7 +7,12 @@ sealed class ViewDataModel(
     val uid: String,
     @SortedBy
     val sortedBy: String
-)
+) {
+    val diff: String
+        get() = uid + getIndex()
+
+    protected open fun getIndex(): Int = 0
+}
 
 class CountryViewDataModel(
     @SortedBy sortedBy: String,
@@ -19,7 +24,13 @@ class CountryViewDataModel(
 ) : ViewDataModel(
     countryName + (cases + recovered + critical + deaths).toString(),
     sortedBy
-)
+) {
+    var localIndex = 0
+
+    override fun getIndex(): Int {
+        return localIndex
+    }
+}
 
 class TotalViewDataModel(
     @SortedBy sortedBy: String,
@@ -32,7 +43,13 @@ class TotalViewDataModel(
 ) : ViewDataModel(
     (cases + recovered + critical + deaths).toString(),
     sortedBy
-)
+) {
+    var localIndex = 0
+
+    override fun getIndex(): Int {
+        return localIndex
+    }
+}
 
 class ErrorViewDataModel(
     val errorMessage: String

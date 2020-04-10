@@ -38,11 +38,13 @@ class CountriesViewModel @Inject constructor(
                 var recovered: Long = 0
                 var critical: Long = 0
                 var deaths: Long = 0
-                result.forEach {
-                    cases += it.cases
-                    recovered += it.recovered
-                    critical += it.critical
-                    deaths += it.deaths
+                result.forEachIndexed { index, countryViewDataModel ->
+                    cases += countryViewDataModel.cases
+                    recovered += countryViewDataModel.recovered
+                    critical += countryViewDataModel.critical
+                    deaths += countryViewDataModel.deaths
+                    countryViewDataModel.localIndex = index + 1
+//                    Log.d("fetchCovidInfoFromNetwork", "Index : ${countryViewDataModel.index} : ${countryViewDataModel.countryName}")
                 }
                 mutableListOf<ViewDataModel>(
                     TotalViewDataModel(
