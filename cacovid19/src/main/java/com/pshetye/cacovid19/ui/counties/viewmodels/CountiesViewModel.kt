@@ -46,6 +46,7 @@ class CountiesViewModel @Inject constructor(
             .subscribe({
                 countiesLiveData.postValue(it)
             }, {
+                countiesLiveData.postValue(listOf(ErrorViewDataModel("")))
                 Log.e(CountiesViewModel::class.simpleName, "Error -> $it", it)
             })
     }

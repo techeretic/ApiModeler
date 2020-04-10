@@ -61,6 +61,7 @@ class CountriesViewModel @Inject constructor(
             .subscribe({
                 covid19CasesPerCountry.postValue(it)
             }, { error ->
+                covid19CasesPerCountry.postValue(listOf(ErrorViewDataModel("")))
                 Log.e(CountriesViewModel::class.simpleName, "Error", error)
             })
     }

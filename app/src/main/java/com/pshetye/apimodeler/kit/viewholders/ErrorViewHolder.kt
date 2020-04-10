@@ -11,7 +11,9 @@ class ErrorViewHolder internal constructor(
     private val view: View
 ): RecyclerView.ViewHolder(view) {
     fun bind(errorMessage: String) {
-        view.findViewById<TextView>(R.id.error_message).text = errorMessage
+        if (errorMessage.isNotEmpty()) {
+            view.findViewById<TextView>(R.id.error_message).text = errorMessage
+        }
     }
 }
 
