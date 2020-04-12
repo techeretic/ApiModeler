@@ -26,13 +26,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
             R.id.navigation_home
         ))
         with (findNavController(R.id.nav_host_fragment)) {
-            addOnDestinationChangedListener { _, destination, _ ->
-                if(destination.id == R.id.navigation_home) {
-                    showBottomNavigation()
-                } else {
-                    hideBottomNavigation()
-                }
-            }
+//            addOnDestinationChangedListener { _, destination, _ ->
+//                if(destination.id == R.id.navigation_home) {
+//                    showBottomNavigation()
+//                } else {
+//                    hideBottomNavigation()
+//                }
+//            }
             nav_view.setupWithNavController(this)
         }
     }
