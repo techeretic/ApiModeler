@@ -27,6 +27,7 @@
         layout="@layout/countries_bottom_sheet_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/bottom_sheet_negative_margin" />
+        android:layout_marginTop="@dimen/bottom_sheet_negative_margin"
+        android:visibility="invisible"/>
 
 </LinearLayout>

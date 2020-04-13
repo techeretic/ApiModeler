@@ -11,9 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
 import com.pshetye.covid19.R
@@ -93,6 +91,9 @@ class CountriesFragment : Fragment() {
             swipeRefreshLayout.isRefreshing = false
             countriesAdapter.submitList(it)
             countries.smoothScrollToPosition(0)
+            if (it.size > 1) {
+                showBottomSheetOptions()
+            }
         })
     }
 
@@ -129,6 +130,16 @@ class CountriesFragment : Fragment() {
                 R.string.sorted_by,
                 getSortedByStringRes(context, sortedBy)
             )
+        }
+    }
+
+    private fun showBottomSheetOptions() {
+        // bottom_navigation is BottomNavigationView
+        with(bottom_sheet) {
+            visibility = View.VISIBLE
+            animate()
+                .alpha(1f)
+                .duration = 500
         }
     }
 }
