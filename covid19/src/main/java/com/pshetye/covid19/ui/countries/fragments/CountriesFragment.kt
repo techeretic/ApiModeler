@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
@@ -74,18 +75,8 @@ class CountriesFragment : Fragment() {
     }
 
     private fun setupRecyclerView(rootView: View) {
-        rootView.findViewById<RecyclerView>(R.id.countries).apply {
-            layoutManager = GridLayoutManager(context, 2).apply {
-                spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                    override fun getSpanSize(position: Int): Int {
-                        return if (position == 0) {
-                            2
-                        } else {
-                            1
-                        }
-                    }
-                }
-            }
+        with(countries) {
+            layoutManager = LinearLayoutManager(context)
             adapter = countriesAdapter
         }
     }
@@ -101,6 +92,7 @@ class CountriesFragment : Fragment() {
         viewModel.covid19CasesPerCountry.observe(viewLifecycleOwner, Observer {
             swipeRefreshLayout.isRefreshing = false
             countriesAdapter.submitList(it)
+            countries.smoothScrollToPosition(0)
         })
     }
 
@@ -130,9 +122,13 @@ class CountriesFragment : Fragment() {
     }
 
     private fun updateSortedByText(context: Context) {
-        sorted_by.text = context.getString(
-            R.string.sorted_by,
-            getSortedByStringRes(context, sortedBy)
-        )
+        if (sortedBy == SORT_OPTION_ALPHABETICAL) {
+            sorted_by.setText(R.string.sorted_alphabetically)
+        } else {
+            sorted_by.text = context.getString(
+                R.string.sorted_by,
+                getSortedByStringRes(context, sortedBy)
+            )
+        }
     }
 }

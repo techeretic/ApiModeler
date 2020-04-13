@@ -52,7 +52,8 @@ class SortOptionFragment : BottomSheetDialogFragment() {
                 SortOption(getString(R.string.sort_by_cases), SORT_OPTION_CASES),
                 SortOption(getString(R.string.sort_by_recovered), SORT_OPTION_RECOVERIES),
                 SortOption(getString(R.string.sort_by_critical), SORT_OPTION_CRITICAL),
-                SortOption(getString(R.string.sort_by_deaths), SORT_OPTION_DEATHS)
+                SortOption(getString(R.string.sort_by_deaths), SORT_OPTION_DEATHS),
+                SortOption(getString(R.string.sort_by_alphabets), SORT_OPTION_ALPHABETICAL)
             )
         }
 

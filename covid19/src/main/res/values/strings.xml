@@ -14,6 +14,14 @@
     <string name="critical">critical</string>
     <string name="sort_by_deaths">Sort by deaths</string>
     <string name="deaths">deaths</string>
+    <string name="sort_by_alphabets">Sort alphabetically</string>
+    <string name="sorted_alphabetically">Sorted alphabetically</string>
     <string name="sorted_by">Sorted by %1s</string>
     <string name="ordered_name">%1d. %1s</string>
+    <string name="cap_countries">Countries</string>
+    <string name="cap_cases">Cases</string>
+    <string name="cap_recoveries">Recoveries</string>
+    <string name="cap_critical">Critical</string>
+    <string name="cap_deaths">Deaths</string>
+    <string name="as_of">As of %1s</string>
 </resources>

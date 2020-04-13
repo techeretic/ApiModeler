@@ -1,12 +1,10 @@
 package com.pshetye.covid19.ui.countries.recyclerview
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pshetye.apimodeler.kit.viewholders.ErrorViewHolder
 import com.pshetye.apimodeler.kit.viewholders.getErrorViewHolder
-import com.pshetye.covid19.R
 import com.pshetye.covid19.ui.countries.viewmodels.*
 import javax.inject.Inject
 
@@ -15,12 +13,8 @@ class CountriesAdapter @Inject constructor(
 ) : ListAdapter<ViewDataModel, RecyclerView.ViewHolder>(countriesAsyncDiff) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when(viewType) {
-            TOTAL_VIEW_TYPE -> TotalViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.total_item_view, parent, false)
-            )
-            COUNTRY_VIEW_TYPE -> CountryViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.country_item_view, parent, false)
-            )
+            TOTAL_VIEW_TYPE -> createTotalViewHolder(parent)
+            COUNTRY_VIEW_TYPE -> createCountryViewHolder(parent)
             ERROR_VIEW_TYPE -> getErrorViewHolder(parent)
             else -> throw UnsupportedOperationException("$viewType is not supported")
         }

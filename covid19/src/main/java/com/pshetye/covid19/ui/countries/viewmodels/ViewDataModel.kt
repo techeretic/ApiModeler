@@ -2,6 +2,7 @@ package com.pshetye.covid19.ui.countries.viewmodels
 
 import androidx.annotation.StringDef
 import androidx.annotation.StringRes
+import java.util.*
 
 sealed class ViewDataModel(
     val uid: String,
@@ -16,6 +17,7 @@ sealed class ViewDataModel(
 
 class CountryViewDataModel(
     @SortedBy sortedBy: String,
+    val updatedAt: Date,
     val countryName: String,
     val cases: Int,
     val recovered: Int,
@@ -34,6 +36,7 @@ class CountryViewDataModel(
 
 class TotalViewDataModel(
     @SortedBy sortedBy: String,
+    val updatedAt: Date,
     @StringRes val title: Int,
     val countries: Int,
     val cases: Long,
@@ -41,7 +44,7 @@ class TotalViewDataModel(
     val critical: Long,
     val deaths: Long
 ) : ViewDataModel(
-    (cases + recovered + critical + deaths).toString(),
+    (cases + recovered + critical + deaths).toString() + updatedAt,
     sortedBy
 ) {
     var localIndex = 0
@@ -74,3 +77,4 @@ const val SORT_OPTION_CASES = "CASES"
 const val SORT_OPTION_RECOVERIES = "RECOVERIES"
 const val SORT_OPTION_CRITICAL = "CRITICAL"
 const val SORT_OPTION_DEATHS = "DEATHS"
+const val SORT_OPTION_ALPHABETICAL = "ALPHABETICALLY"
