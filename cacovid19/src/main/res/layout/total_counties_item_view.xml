@@ -25,9 +25,20 @@
             tools:text="County Name" />
 
         <TextView
+            android:id="@+id/last_updated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:padding="@dimen/item_country_padding"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textSize="@dimen/item_small_text_size"
+            android:gravity="start"
+            tools:text="Last updated time"/>
+
+        <TextView
             android:id="@+id/counties"
             style="@style/total_values"
-            tools:text="@string/number_of_countries"/>
+            tools:text="@string/number_of_counties"/>
 
         <TextView
             android:id="@+id/cases"

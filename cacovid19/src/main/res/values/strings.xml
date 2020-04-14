@@ -4,7 +4,7 @@
     <string name="number_of_deaths">%1s deaths</string>
     <string name="number_of_recoveries">%1s recoveries</string>
     <string name="number_of_critical">%1s critical</string>
-    <string name="number_of_countries">%1s countries</string>
+    <string name="number_of_counties">%1s counties</string>
     <string name="worldwide_total">Worldwide</string>
     <string name="sort_by_cases">Sort by cases</string>
     <string name="cases">cases</string>
@@ -17,4 +17,5 @@
     <string name="sorted_by">Sorted by %1s</string>
     <string name="title_cacovid19">California counties affected by Covid-19</string>
     <string name="ordered_name">%1d. %1s</string>
+    <string name="as_of">As of %1s</string>
 </resources>

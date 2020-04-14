@@ -21,16 +21,20 @@ class CountiesViewModel @Inject constructor(
 
     private val dateFormat1: DateFormat = SimpleDateFormat("M/d/YYY", Locale.getDefault())
     private val dateFormat2: DateFormat = SimpleDateFormat("MM/dd/YYY", Locale.getDefault())
+    private val displayFormat: DateFormat = SimpleDateFormat("MMM-dd, YYYY", Locale.getDefault())
 
     val countiesLiveData: MutableLiveData<List<CountiesViewDataModel>> =
         MutableLiveData()
 
     fun fetchCaliforniaCovidStatsViaSql(): Disposable {
+        var lastUpdatedDate: String = ""
         return caCovid19Service.getCaliforniaCasesViaSql(getQuery(todayFormat1, todayFormat2))
             .flatMap {
                 if (it.result.records.isEmpty()) {
+                    lastUpdatedDate = displayYesterday
                     caCovid19Service.getCaliforniaCasesViaSql(getQuery(yesterdayFormat1, yesterdayFormat2))
                 } else {
+                    lastUpdatedDate = displayToday
                     Single.just(it)
                 }
             }
@@ -39,7 +43,7 @@ class CountiesViewModel @Inject constructor(
                     .filter { (it.totalConfirmedCases ?: 0) > 0 }
                     .sortedByDescending { it.totalConfirmedCases }
                     .map { it.toViewDataModel() }
-                generateTotals(result)
+                generateTotals(result, lastUpdatedDate)
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -51,7 +55,10 @@ class CountiesViewModel @Inject constructor(
             })
     }
 
-    private fun generateTotals(result: List<CountyViewDataModel>): List<CountiesViewDataModel> {
+    private fun generateTotals(
+        result: List<CountyViewDataModel>,
+        lastUpdatedDate: String
+    ): List<CountiesViewDataModel> {
         var cases: Long = 0
         var critical: Long = 0
         var deaths: Long = 0
@@ -66,7 +73,8 @@ class CountiesViewModel @Inject constructor(
                 headerStringRes = R.string.title_cacovid19,
                 cases = cases,
                 critical = critical,
-                deaths = deaths
+                deaths = deaths,
+                lastUpdatedDate = lastUpdatedDate
             )
         ).apply {
             addAll(result)
@@ -89,6 +97,21 @@ class CountiesViewModel @Inject constructor(
         get() {
             with(Calendar.getInstance()) {
                 return dateFormat1.format(time)
+            }
+        }
+
+    private val displayToday: String
+        get() {
+            with(Calendar.getInstance()) {
+                return displayFormat.format(time)
+            }
+        }
+
+    private val displayYesterday: String
+        get() {
+            with(Calendar.getInstance()) {
+                add(Calendar.DATE, -1)
+                return displayFormat.format(time)
             }
         }
 

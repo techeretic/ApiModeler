@@ -18,9 +18,12 @@ class TotalsViewDataModel(
     @StringRes val headerStringRes: Int,
     val cases: Long,
     val critical: Long,
-    val deaths: Long
+    val deaths: Long,
+    val lastUpdatedDate: String
 ): CountiesViewDataModel(
-    TotalsViewDataModel::class.simpleName + (totalCounties + cases + critical + deaths).toString()
+    TotalsViewDataModel::class.simpleName
+            + (totalCounties + cases + critical + deaths).toString()
+            + lastUpdatedDate
 )
 
 class ErrorViewDataModel(
