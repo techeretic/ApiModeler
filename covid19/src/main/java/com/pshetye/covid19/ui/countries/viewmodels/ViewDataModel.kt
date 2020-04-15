@@ -68,7 +68,8 @@ const val COUNTRY_VIEW_TYPE = 101
         SORT_OPTION_CASES,
         SORT_OPTION_RECOVERIES,
         SORT_OPTION_CRITICAL,
-        SORT_OPTION_DEATHS
+        SORT_OPTION_DEATHS,
+        SORT_OPTION_ALPHABETICAL
     )
 ]
 annotation class SortedBy
