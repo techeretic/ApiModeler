@@ -52,7 +52,7 @@ class CountriesFragment : Fragment() {
         )
         updateSortedByText(view.context)
 
-        setupRecyclerView(view)
+        setupRecyclerView()
 
         with(getViewModel()) {
 
@@ -72,7 +72,7 @@ class CountriesFragment : Fragment() {
             }
     }
 
-    private fun setupRecyclerView(rootView: View) {
+    private fun setupRecyclerView() {
         with(countries) {
             layoutManager = LinearLayoutManager(context)
             adapter = countriesAdapter

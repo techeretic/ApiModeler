@@ -15,7 +15,7 @@
     <string name="sort_by_deaths">Sort by deaths</string>
     <string name="deaths">deaths</string>
     <string name="sorted_by">Sorted by %1s</string>
-    <string name="title_cacovid19">California counties affected by Covid-19</string>
+    <string name="cacovid19_title">California counties affected by Covid-19</string>
     <string name="ordered_name">%1d. %1s</string>
     <string name="as_of">As of %1s</string>
 </resources>

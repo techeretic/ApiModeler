@@ -70,7 +70,7 @@ class CountiesViewModel @Inject constructor(
         return mutableListOf<CountiesViewDataModel>(
             TotalsViewDataModel(
                 totalCounties = result.size,
-                headerStringRes = R.string.title_cacovid19,
+                headerStringRes = R.string.cacovid19_title,
                 cases = cases,
                 critical = critical,
                 deaths = deaths,
