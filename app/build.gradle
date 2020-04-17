@@ -10,15 +10,16 @@ android {
         applicationId "com.pshetye.apimodeler"
         minSdkVersion 28
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 1010000
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
