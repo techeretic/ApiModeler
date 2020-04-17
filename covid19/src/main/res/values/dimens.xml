@@ -10,6 +10,6 @@
     <dimen name="item_sort_option_elevation">4dp</dimen>
     <dimen name="list_item_spacing">16dp</dimen>
     <dimen name="list_item_spacing_half">8dp</dimen>
-    <dimen name="bottom_sheet_margin">56dp</dimen>
-    <dimen name="bottom_sheet_negative_margin">-56dp</dimen>
+    <dimen name="bottom_sheet_margin">0dp</dimen>
+    <dimen name="bottom_sheet_negative_margin">-48dp</dimen>
 </resources>

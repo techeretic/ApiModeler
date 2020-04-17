@@ -12,16 +12,23 @@
         <item name="android:gravity">end</item>
     </style>
     <style name="selected_sort_option">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/item_module_api_padding</item>
         <item name="android:textSize">@dimen/item_cases_text_size</item>
-        <item name="android:layout_margin">@dimen/item_sort_option_margin</item>
+        <item name="android:layout_marginStart">@dimen/list_item_spacing</item>
+        <item name="android:layout_marginEnd">@dimen/list_item_spacing</item>
+        <item name="android:layout_marginTop">@dimen/bottom_sheet_margin</item>
+        <item name="android:layout_marginBottom">@dimen/bottom_sheet_margin</item>
         <item name="android:gravity">center</item>
         <item name="android:elevation">@dimen/item_sort_option_elevation</item>
     </style>
     <style name="sort_option" parent="selected_sort_option">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:elevation">@dimen/item_sort_option_elevation</item>
+        <item name="android:layout_marginTop">@dimen/item_sort_option_margin</item>
+        <item name="android:layout_marginBottom">@dimen/item_sort_option_margin</item>
+        <item name="android:layout_marginStart">@dimen/list_item_spacing</item>
+        <item name="android:layout_marginEnd">@dimen/list_item_spacing</item>
     </style>
     <style name="total_heading">
         <item name="android:layout_width">match_parent</item>

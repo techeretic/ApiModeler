@@ -17,6 +17,7 @@
     <string name="sort_by_alphabets">Sort alphabetically</string>
     <string name="sorted_alphabetically">Sorted alphabetically</string>
     <string name="sorted_by">Sorted by %1s</string>
+    <string name="search">Search</string>
     <string name="ordered_name">%1d. %1s</string>
     <string name="cap_countries">Countries</string>
     <string name="cap_cases">Cases</string>
