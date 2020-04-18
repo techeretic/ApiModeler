@@ -18,6 +18,7 @@ import com.pshetye.covid19.R
 import com.pshetye.covid19.di.components.Covid19Component
 import com.pshetye.covid19.di.components.DaggerCovid19Component
 import com.pshetye.covid19.ui.countries.recyclerview.CountriesAdapter
+import com.pshetye.covid19.ui.countries.recyclerview.decoration.BottomOffsetDecoration
 import com.pshetye.covid19.ui.countries.viewmodels.*
 import kotlinx.android.synthetic.main.countries_bottom_sheet_main.*
 import kotlinx.android.synthetic.main.countries_fragment_with_bottom_sheet.*
@@ -76,6 +77,11 @@ class CountriesFragment : Fragment() {
         with(countries) {
             layoutManager = LinearLayoutManager(context)
             adapter = countriesAdapter
+            addItemDecoration(
+                BottomOffsetDecoration(
+                    resources.getDimensionPixelOffset(R.dimen.bottom_sheet_positive_margin)
+                )
+            )
         }
     }
 

@@ -15,7 +15,7 @@
         android:id="@+id/sorted_by"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_weight="0.75"
         style="@style/selected_sort_option"
         android:text="@string/sorted_by"
         tools:text="@string/sorted_by"/>
@@ -24,7 +24,7 @@
         android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_weight="0.25"
         style="@style/selected_sort_option"
         android:text="@string/search"
         tools:text="@string/search"/>

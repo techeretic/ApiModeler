@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.pshetye.apimodeler.di.components.ActivityComponent
 import com.pshetye.apimodeler.di.components.DaggerActivityComponent
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
