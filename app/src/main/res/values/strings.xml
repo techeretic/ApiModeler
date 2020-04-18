@@ -2,6 +2,8 @@
     <string name="app_name">Api Modeler</string>
     <string name="title_home">@string/app_name</string>
     <string name="title_dashboard">Dashboard</string>
+    <string name="title_licenses">Licenses</string>
+    <string name="open_source_notices">Open Source Notices</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_usgs">USGS EarthQuakes</string>
 

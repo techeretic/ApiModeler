@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_navigation_home_to_cacovid"
             app:destination="@id/cacovid" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_licenses"
+            app:destination="@id/navigation_licenses" />
     </fragment>
     <fragment
         android:id="@+id/usgsEarthquakes"
@@ -39,5 +42,9 @@
         app:graphPackage="com.pshetye.apimodeler.cacovid19"
         app:graphResName="cacovid_navigation"
         app:moduleName="cacovid19" />
+    <activity
+        android:id="@+id/navigation_licenses"
+        android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+        android:label="@string/title_licenses"/>
 
 </navigation>

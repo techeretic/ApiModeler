@@ -11,6 +11,11 @@ class HomeViewModel : ViewModel() {
         .apply {
             value = listOf(
                 SupportedModule(
+                    R.string.title_licenses,
+                    R.id.action_navigation_home_to_navigation_licenses,
+                    "Open Source Notices"
+                ),
+                SupportedModule(
                     R.string.title_usgs,
                     R.id.action_navigation_home_to_usgsEarthquakes,
                     "https://earthquake.usgs.gov/"
