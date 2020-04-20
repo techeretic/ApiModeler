@@ -51,6 +51,9 @@ class CountriesFragment : Fragment() {
         sorted_by.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_countries_to_sort)
         )
+        search.setOnClickListener (
+            Navigation.createNavigateOnClickListener(R.id.action_countries_to_search)
+        )
         updateSortedByText(view.context)
 
         setupRecyclerView()

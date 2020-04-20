@@ -1,16 +1,21 @@
 package com.pshetye.covid19.ui.countries.fragments
 
+import android.content.Context
 import android.os.Bundle
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pshetye.covid19.R
 import kotlinx.android.synthetic.main.fragment_search_dialog_list_dialog.*
 import kotlinx.android.synthetic.main.fragment_search_dialog_list_dialog_item.view.*
+
 
 // TODO: Customize parameter argument names
 const val ARG_ITEM_COUNT = "item_count"
@@ -34,8 +39,11 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        list.layoutManager = LinearLayoutManager(context)
-        list.adapter = StringAdapter(0)
+        results.layoutManager = LinearLayoutManager(context)
+        results.adapter = StringAdapter(0)
+        search_box.showSoftInputOnFocus = true
+        dialog?.window?.setSoftInputMode(SOFT_INPUT_STATE_VISIBLE);
+        search_box.requestFocus()
     }
 
     private inner class ViewHolder internal constructor(
@@ -48,7 +56,6 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
             false
         )
     ) {
-
         internal val text: TextView = itemView.text
     }
 

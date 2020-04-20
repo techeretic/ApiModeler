@@ -25,4 +25,5 @@
     <string name="cap_critical">Critical</string>
     <string name="cap_deaths">Deaths</string>
     <string name="as_of">As of %1s</string>
+    <string name="search_hint">Search by country name</string>
 </resources>
