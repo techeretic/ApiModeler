@@ -81,7 +81,7 @@ dependencies {
     kapt('com.google.dagger:dagger-compiler:2.27')
 
     // Navigation Component
-    def nav_version = "2.3.0-alpha04"
+    def nav_version = "2.3.0-alpha06"
 
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
