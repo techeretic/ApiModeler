@@ -11,6 +11,8 @@ I will be attempting to use the following libraries/patterns/etc.
 Currently fetching data from 
 - https://earthquake.usgs.gov/
 - https://corona-api.com/
+
+Dropped support
 - https://data.chhs.ca.gov/
 
 Feel free to leave any feedback
