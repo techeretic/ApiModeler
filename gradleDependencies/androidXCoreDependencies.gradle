@@ -1,0 +1,14 @@
+dependencies {
+
+    implementation "androidx.core:core-ktx:${rootProject.ext.androidXCore}"
+    implementation "androidx.legacy:legacy-support-v4:${rootProject.ext.androidXLegacySupport}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.androidXLifecycleExtensions}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${rootProject.ext.androidXLifecycleViewModelKotlinExtensions}"
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.androidXAppcompat}"
+    implementation "androidx.fragment:fragment-ktx:${rootProject.ext.androidXFragmentKotlinExtensions}"
+
+    implementation "com.google.android.material:material:${rootProject.ext.materialDesign}"
+
+    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.androidXConstraintLayout}"
+
+}

@@ -1,0 +1,13 @@
+dependencies {
+
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofit2}"
+    implementation "com.squareup.retrofit2:converter-moshi:${rootProject.ext.retrofit2ConverterForMoshi}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofit2AdapterForRxJava2}"
+    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttp}"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:${rootProject.ext.okhttpUrlConnection}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLogginInterceptor}"
+    implementation "com.squareup.okio:okio:${rootProject.ext.okio}"
+    implementation("com.squareup.moshi:moshi-kotlin:${rootProject.ext.moshiKotlin}")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:${rootProject.ext.moshiKotlinCodeGen}")
+
+}

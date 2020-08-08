@@ -1,0 +1,55 @@
+
+ext {
+
+    // Android SDK versions
+    compileSdkVersion = 30
+    targetSdkVersion = 30
+    minSdkVersion = 28
+    buildToolsVersion = "30.0.0"
+
+    // ReactiveX
+    rxAndroidForRxJava2 = "2.1.1"
+    rxJavaForRxJava2 = "2.2.13"
+
+    // Networking
+    retrofit2 = "2.7.2"
+    retrofit2ConverterForMoshi = "2.7.2"
+    retrofit2AdapterForRxJava2 = "2.5.0"
+    okhttp = "3.14.7"
+    okhttpUrlConnection = "3.12.5"
+    okhttpLogginInterceptor = "3.12.5"
+    okio = "2.4.0"
+    moshiKotlin = "1.9.2"
+    moshiKotlinCodeGen = "1.9.2"
+    moshiAdapters = "1.9.2"
+
+    // Dependency Injection
+    dagger2 = "2.27"
+    dagger2Compiler = "2.27"
+
+    // AndroidX - Core
+    androidXCore = "1.3.1"
+    androidXLegacySupport = "1.0.0"
+    androidXLifecycleExtensions = "2.2.0"
+    androidXLifecycleViewModelKotlinExtensions = "2.2.0"
+    androidXAppcompat = "1.2.0"
+    androidXFragmentKotlinExtensions = "1.2.5"
+
+    // AndroidX - UI
+    androidXConstraintLayout = "1.1.3"
+
+    // Navigation Framework
+    androidXNavigationFrameworkDynamicFeatures = "2.3.0"
+    androidXNavigationFrameworkUiExtensions = "2.3.0"
+    androidXNavigationFrameworkFragmentExtensions = "2.3.0"
+    androidXNavigationFrameworkTesting = "2.3.0"
+
+    // Material Design
+    materialDesign = "1.2.0"
+
+    // Testing
+    junit = "4.12"
+    androidTestJunit = "1.1.1"
+    androidTestEspresso = "3.2.0"
+    androidTestAnnotations = "1.1.0"
+}

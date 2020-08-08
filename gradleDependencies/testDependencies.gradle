@@ -1,0 +1,8 @@
+dependencies {
+
+    testImplementation "junit:junit:${rootProject.ext.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${rootProject.ext.androidTestJunit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${rootProject.ext.androidTestEspresso}"
+    androidTestImplementation "androidx.annotation:annotation:${rootProject.ext.androidTestAnnotations}"
+
+}

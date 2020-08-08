@@ -1,0 +1,6 @@
+dependencies {
+
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidForRxJava2}"
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJavaForRxJava2}"
+
+}

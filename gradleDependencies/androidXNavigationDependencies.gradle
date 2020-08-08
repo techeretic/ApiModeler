@@ -1,0 +1,13 @@
+dependencies {
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:${rootProject.ext.androidXNavigationFrameworkFragmentExtensions}"
+    implementation "androidx.navigation:navigation-ui-ktx:${rootProject.ext.androidXNavigationFrameworkUiExtensions}"
+
+    // Dynamic Feature Module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:${rootProject.ext.androidXNavigationFrameworkDynamicFeatures}"
+
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:${rootProject.ext.androidXNavigationFrameworkTesting}"
+
+}
