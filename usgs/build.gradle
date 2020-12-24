@@ -8,6 +8,7 @@ apply from:'../gradleDependencies/daggerDependencies.gradle'
 apply from:'../gradleDependencies/networkingDependencies.gradle'
 apply from:'../gradleDependencies/reactiveXDependencies.gradle'
 apply from:'../gradleDependencies/androidXCoreDependencies.gradle'
+apply from:'../gradleDependencies/androidXNavigationDependencies.gradle'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -29,5 +30,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation project(":app")
 }

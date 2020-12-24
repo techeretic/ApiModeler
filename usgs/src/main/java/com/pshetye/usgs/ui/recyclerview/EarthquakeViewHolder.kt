@@ -3,6 +3,8 @@ package com.pshetye.usgs.ui.recyclerview
 import android.icu.text.NumberFormat
 import android.view.View
 import android.widget.TextView
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.pshetye.usgs.R
 import com.pshetye.usgs.models.Feature
@@ -17,6 +19,9 @@ class EarthquakeViewHolder(
             findViewById<TextView>(R.id.intensity).text =
                 context.getString(R.string.eq_intensity,
                     NumberFormat.getInstance().format(feature.properties?.mag ?: 0.0))
+            setOnClickListener {
+                it.findNavController().navigate(R.id.action_usgsEarthquakes2_to_usgsActivity)
+            }
         }
     }
 }

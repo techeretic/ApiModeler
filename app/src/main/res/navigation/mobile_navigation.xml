@@ -11,10 +11,8 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_navigation_home_to_usgsEarthquakes"
-            app:destination="@id/usgsEarthquakes"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            android:id="@+id/action_navigation_home_to_usgs"
+            app:destination="@id/usgs" />
         <action
             android:id="@+id/action_navigation_home_to_covid"
             app:destination="@id/covid" />
@@ -24,13 +22,6 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_licenses"
             app:destination="@id/navigation_licenses" />
-    </fragment>
-    <fragment
-        android:id="@+id/usgsEarthquakes"
-        android:name="com.pshetye.usgs.ui.fragments.UsgsEarthquakes"
-        app:moduleName="usgs"
-        android:label="UsgsEarthquakes"
-        tools:layout="@layout/usgs_earthquakes_fragment">
     </fragment>
     <include-dynamic
         android:id="@+id/covid"
@@ -42,6 +33,11 @@
         app:graphPackage="com.pshetye.apimodeler.cacovid19"
         app:graphResName="cacovid_navigation"
         app:moduleName="cacovid19" />
+    <include-dynamic
+        android:id="@+id/usgs"
+        app:graphPackage="com.pshetye.apimodeler.usgs"
+        app:graphResName="usgs_navigation"
+        app:moduleName="usgs" />
     <activity
         android:id="@+id/navigation_licenses"
         android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"

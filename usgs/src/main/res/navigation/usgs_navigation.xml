@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:moduleName="usgs"
+    app:startDestination="@id/usgsEarthquakes">
+
+    <fragment
+        android:id="@+id/usgsEarthquakes"
+        android:name="com.pshetye.usgs.ui.fragments.UsgsEarthquakes"
+        android:label="usgs_earthquakes_fragment"
+        tools:layout="@layout/usgs_earthquakes_fragment" >
+        <action
+            android:id="@+id/action_usgsEarthquakes2_to_usgsActivity"
+            app:destination="@id/usgsActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/usgsActivity"
+        android:name="com.pshetye.usgs.activity.UsgsActivity"
+        android:label="activity_usgs"
+        tools:layout="@layout/activity_usgs" />
+</navigation>

@@ -17,7 +17,7 @@ class HomeViewModel : ViewModel() {
                 ),
                 SupportedModule(
                     R.string.title_usgs,
-                    R.id.action_navigation_home_to_usgsEarthquakes,
+                    R.id.action_navigation_home_to_usgs,
                     "https://earthquake.usgs.gov/"
                 ),
                 SupportedModule(
