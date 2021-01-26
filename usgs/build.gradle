@@ -29,11 +29,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-<<<<<<< Updated upstream
-=======
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation project(":myresourcelibrary")
->>>>>>> Stashed changes
     implementation project(":app")
 }
