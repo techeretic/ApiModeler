@@ -48,4 +48,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 
     implementation "com.squareup.moshi:moshi-adapters:${rootProject.ext.moshiAdapters}"
+
+    api project(":myresourcelibrary")
 }

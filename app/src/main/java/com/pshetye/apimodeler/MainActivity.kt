@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
 //            }
             nav_view.setupWithNavController(this)
         }
+
+        val someString = getString(R.string.something_for_testing)
     }
 
     override fun onSupportNavigateUp(): Boolean {
