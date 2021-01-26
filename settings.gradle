@@ -1,3 +1,4 @@
+include ':myresourcelibrary'
 apply from: 'versions.gradle'
 
 include ':cacovid19'
