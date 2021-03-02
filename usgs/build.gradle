@@ -8,6 +8,7 @@ apply from:'../gradleDependencies/daggerDependencies.gradle'
 apply from:'../gradleDependencies/networkingDependencies.gradle'
 apply from:'../gradleDependencies/reactiveXDependencies.gradle'
 apply from:'../gradleDependencies/androidXCoreDependencies.gradle'
+apply from:'../gradleDependencies/testDependencies.gradle'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -19,7 +20,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.pshetye.usgs.UsgsTestRunner"
     }
 
     kotlinOptions {
