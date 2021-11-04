@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -12,7 +13,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.button.MaterialButton
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
 import com.pshetye.covid19.R
 import com.pshetye.covid19.di.components.Covid19Component
@@ -20,13 +23,17 @@ import com.pshetye.covid19.di.components.DaggerCovid19Component
 import com.pshetye.covid19.ui.countries.recyclerview.CountriesAdapter
 import com.pshetye.covid19.ui.countries.recyclerview.decoration.BottomOffsetDecoration
 import com.pshetye.covid19.ui.countries.viewmodels.*
-import kotlinx.android.synthetic.main.countries_bottom_sheet_main.*
-import kotlinx.android.synthetic.main.countries_fragment_with_bottom_sheet.*
 import javax.inject.Inject
 
 class CountriesFragment : Fragment() {
 
     private lateinit var covid19Component: Covid19Component
+
+    private lateinit var refresher: SwipeRefreshLayout
+    private lateinit var sortedByButton: MaterialButton
+    private lateinit var search: MaterialButton
+    private lateinit var countries: RecyclerView
+    private lateinit var bottomSheet: LinearLayout
 
     @Inject
     lateinit var countriesAdapter: CountriesAdapter
@@ -48,7 +55,13 @@ class CountriesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        sorted_by.setOnClickListener(
+        refresher = view.findViewById(R.id.refresher)
+        sortedByButton = view.findViewById(R.id.sorted_by)
+        search = view.findViewById(R.id.search)
+        countries = view.findViewById(R.id.countries)
+        bottomSheet = view.findViewById(R.id.bottom_sheet)
+
+        sortedByButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_countries_to_sort)
         )
         search.setOnClickListener (
@@ -69,11 +82,9 @@ class CountriesFragment : Fragment() {
     }
 
     private fun initializeCovid19Component(context: Context): Covid19Component {
-        return DaggerCovid19Component.factory()
+        covid19Component = DaggerCovid19Component.factory()
             .create((context as ProvideActivityComponent).getActivityComponent())
-            .apply {
-                covid19Component = this
-            }
+        return covid19Component
     }
 
     private fun setupRecyclerView() {
@@ -133,9 +144,9 @@ class CountriesFragment : Fragment() {
 
     private fun updateSortedByText(context: Context) {
         if (sortedBy == SORT_OPTION_ALPHABETICAL) {
-            sorted_by.setText(R.string.sorted_alphabetically)
+            sortedByButton.setText(R.string.sorted_alphabetically)
         } else {
-            sorted_by.text = context.getString(
+            sortedByButton.text = context.getString(
                 R.string.sorted_by,
                 getSortedByStringRes(context, sortedBy)
             )
@@ -144,7 +155,7 @@ class CountriesFragment : Fragment() {
 
     private fun showBottomSheetOptions() {
         // bottom_navigation is BottomNavigationView
-        with(bottom_sheet) {
+        with(bottomSheet) {
             visibility = View.VISIBLE
             animate()
                 .alpha(1f)

@@ -6,14 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pshetye.apimodeler.di.components.ActivityComponent
 import com.pshetye.apimodeler.di.components.DaggerActivityComponent
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityComponent {
 
     private lateinit var activityComponent: ActivityComponent
+
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.navigation_home
         ))
+        bottomNavigationView = findViewById(R.id.nav_view)
         with (findNavController(R.id.nav_host_fragment)) {
 //            addOnDestinationChangedListener { _, destination, _ ->
 //                if(destination.id == R.id.navigation_home) {
@@ -33,7 +36,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
 //                    hideBottomNavigation()
 //                }
 //            }
-            nav_view.setupWithNavController(this)
+            bottomNavigationView.setupWithNavController(this)
         }
     }
 
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
 
     private fun hideBottomNavigation() {
         // bottom_navigation is BottomNavigationView
-        with(nav_view) {
+        with(bottomNavigationView) {
             if (visibility == View.VISIBLE && alpha == 1f) {
                 animate()
                     .alpha(0f)
@@ -63,7 +66,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ProvideActivityC
 
     private fun showBottomNavigation() {
         // bottom_navigation is BottomNavigationView
-        with(nav_view) {
+        with(bottomNavigationView) {
             visibility = View.VISIBLE
             animate()
                 .alpha(1f)

@@ -12,8 +12,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
 import com.pshetye.covid19.R
 import com.pshetye.covid19.ui.countries.viewmodels.*
-import kotlinx.android.synthetic.main.fragment_sort_option_list_dialog.*
-import kotlinx.android.synthetic.main.fragment_sort_option_list_dialog_item.view.*
 
 class SortOptionFragment : BottomSheetDialogFragment() {
 
@@ -28,12 +26,13 @@ class SortOptionFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val sortOptions = getSortOptions(view.context)
+        val list = view.findViewById<RecyclerView>(R.id.list)
         list.layoutManager = LinearLayoutManager(context)
         list.adapter = SortOptionsAdapter(sortOptions)
         list.adapter
     }
 
-    private inner class ViewHolder internal constructor(
+    private inner class ViewHolder constructor(
         inflater: LayoutInflater,
         parent: ViewGroup
     ) : RecyclerView.ViewHolder(
@@ -43,7 +42,7 @@ class SortOptionFragment : BottomSheetDialogFragment() {
             false
         )
     ) {
-        internal val sortOption: MaterialButton = itemView.sort_option
+        val sortOption: MaterialButton = itemView as MaterialButton
     }
 
     private fun getSortOptions(context: Context): List<SortOption> =

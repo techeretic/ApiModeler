@@ -8,18 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pshetye.covid19.R
 import com.pshetye.covid19.ui.countries.viewmodels.CountryViewDataModel
-import kotlinx.android.synthetic.main.country_view.view.*
 
 class CountryViewHolder(
     private val view: View
 ) : RecyclerView.ViewHolder(view) {
     fun bind(data: CountryViewDataModel) = with(view) {
         val numberFormat = NumberFormat.getInstance()
-        country_name.text = context.getString(R.string.ordered_name, data.localIndex, data.countryName)
-        cases.text = numberFormat.format(data.cases)
-        recoveries.text = numberFormat.format(data.recovered)
-        critical.text = numberFormat.format(data.critical)
-        deaths.text = numberFormat.format(data.deaths)
+        view.findViewById<TextView>(R.id.country_name).text = context.getString(R.string.ordered_name, data.localIndex, data.countryName)
+        view.findViewById<TextView>(R.id.cases).text = numberFormat.format(data.cases)
+        view.findViewById<TextView>(R.id.recoveries).text = numberFormat.format(data.recovered)
+        view.findViewById<TextView>(R.id.critical).text = numberFormat.format(data.critical)
+        view.findViewById<TextView>(R.id.deaths).text = numberFormat.format(data.deaths)
     }
 }
 

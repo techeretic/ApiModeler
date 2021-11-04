@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.pshetye.apimodeler.di.interfaces.ProvideActivityComponent
 import com.pshetye.cacovid19.R
 import com.pshetye.cacovid19.di.components.CaCovid19Component
@@ -17,12 +19,13 @@ import com.pshetye.cacovid19.di.components.DaggerCaCovid19Component
 import com.pshetye.cacovid19.ui.counties.recyclerview.CountiesAdapter
 import com.pshetye.cacovid19.ui.counties.viewmodels.CountiesViewModel
 import com.pshetye.cacovid19.ui.counties.viewmodels.CountiesViewModelFactory
-import kotlinx.android.synthetic.main.counties_fragment.*
 import javax.inject.Inject
 
 class CountiesFragment : Fragment() {
 
     private lateinit var caCovid19Component: CaCovid19Component
+
+    private lateinit var refresher: SwipeRefreshLayout
 
     @Inject
     lateinit var countiesviewmodelFactory: CountiesViewModelFactory
@@ -38,7 +41,9 @@ class CountiesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        with(list_of_counties) {
+        val listOfCountries = view.findViewById<RecyclerView>(R.id.list_of_counties)
+        refresher = view.findViewById(R.id.refresher)
+        with(listOfCountries) {
             layoutManager = GridLayoutManager(view.context, 2).apply {
                 spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
@@ -75,11 +80,8 @@ class CountiesFragment : Fragment() {
         ViewModelProvider(this, countiesviewmodelFactory).get(CountiesViewModel::class.java)
 
     private fun initializeComponent(context: Context): CaCovid19Component {
-        DaggerCaCovid19Component.factory()
+        caCovid19Component = DaggerCaCovid19Component.factory()
             .create((context as ProvideActivityComponent).getActivityComponent())
-            .apply {
-                caCovid19Component = this
-                return this
-            }
+        return caCovid19Component
     }
 }

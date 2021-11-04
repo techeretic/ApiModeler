@@ -1,20 +1,16 @@
 package com.pshetye.covid19.ui.countries.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
-import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.textfield.TextInputEditText
 import com.pshetye.covid19.R
-import kotlinx.android.synthetic.main.fragment_search_dialog_list_dialog.*
-import kotlinx.android.synthetic.main.fragment_search_dialog_list_dialog_item.view.*
 
 
 // TODO: Customize parameter argument names
@@ -39,14 +35,16 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val results = view.findViewById<RecyclerView>(R.id.results)
+        val searchBox = view.findViewById<TextInputEditText>(R.id.search_box)
         results.layoutManager = LinearLayoutManager(context)
         results.adapter = StringAdapter(0)
-        search_box.showSoftInputOnFocus = true
+        searchBox.showSoftInputOnFocus = true
         dialog?.window?.setSoftInputMode(SOFT_INPUT_STATE_VISIBLE);
-        search_box.requestFocus()
+        searchBox.requestFocus()
     }
 
-    private inner class ViewHolder internal constructor(
+    private inner class ViewHolder constructor(
         inflater: LayoutInflater,
         parent: ViewGroup
     ) : RecyclerView.ViewHolder(
@@ -56,7 +54,7 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
             false
         )
     ) {
-        internal val text: TextView = itemView.text
+        val text: TextView = itemView as TextView
     }
 
     private inner class StringAdapter internal constructor(private val mItemCount: Int) :

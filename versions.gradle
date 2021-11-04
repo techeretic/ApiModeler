@@ -18,14 +18,14 @@ ext {
     okhttp = "3.14.7"
     okhttpUrlConnection = "3.12.5"
     okhttpLogginInterceptor = "3.12.5"
-    okio = "2.4.0"
-    moshiKotlin = "1.9.2"
-    moshiKotlinCodeGen = "1.9.2"
-    moshiAdapters = "1.9.2"
+    okio = "3.0.0"
+    moshiKotlin = "1.12.0"
+    moshiKotlinCodeGen = "1.12.0"
+    moshiAdapters = "1.12.0"
 
     // Dependency Injection
-    dagger2 = "2.27"
-    dagger2Compiler = "2.27"
+    dagger2 = "2.40"
+    dagger2Compiler = "2.40"
 
     // AndroidX - Core
     androidXCore = "1.3.1"
